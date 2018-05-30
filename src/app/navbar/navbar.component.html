@@ -1,0 +1,109 @@
+<!-- <nav class="navbar navbar-myphoto navbar-fixed-top"> -->
+<nav class="navbar navbar-myphoto navbar-fixed-top">  
+  <!-- <button #menu class="navbar-toggler hidden-sm-up pull-xs-right" type="button" -->
+  <button #menu class="navbar-toggler hidden-sm-up navbar-toggler-right" type="button"  
+          data-toggle="collapse" data-target="#navigation">
+    &#9776;
+  </button>
+  <a class="navbar-brand" href="#">Event Planning NW</a>
+  <!-- <div class="collapse navbar-toggleable-xs" id="navigation"> -->
+  <div class="collapse navbar-collapse navbar-toggleable-xs" id="navigation">  
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link hvr-underline-from-center" (click)="closeMenu()" href="#welcome" data-spy="scroll" data-target="#welcome" data-offset="50">Welcome</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link hvr-underline-from-center" (click)="closeMenu()" href="#services" data-spy="scroll" data-target="#services" data-offset="50">Services</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link hvr-underline-from-center" (click)="closeMenu()" href="#gallery" data-spy="scroll" data-target="#gallery" data-offset="50">Gallery</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link hvr-underline-from-center" (click)="closeMenu()" href="#about" data-spy="scroll" data-target="#about" data-offset="50">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link hvr-underline-from-center" (click)="closeMenu()" href="#contact" data-spy="scroll" data-target="#contact" data-offset="50">Contact Us</a>
+      </li>
+      <!-- <li class="nav-item dropdown pull-xs-right"> -->
+      <li class="nav-item dropdown">
+          <!-- <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" 
+                aria-haspopup="true" aria-expanded="false"> -->
+                <!-- Profile <span class="caret"></span> -->
+          <a href="#" class="nav-link" data-toggle="dropdown" role="button"  
+              aria-haspopup="true" aria-expanded="false">Profile <span class="myphoto-chevron-down hvr-icon-bob"></span>
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#profile-modal" (click)="closeMenu()">
+                <i class="fa fa-user"></i> Profile
+              </a>
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#settings-modal" (click)="closeMenu()">
+                <i class="fa fa-cogs"></i> Settings
+              </a>
+            <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" (click)="closeMenu()">
+                <i class="fa fa-sign-out"></i> Logout
+              </a>
+
+              <!-- THIS ACCESSIBILITY FEATURE IS NOT YET WORKING WITH ANGULAR CODE -->
+              <a class="dropdown-item a11yhcm" href="#" data-a11yhcm="./assets/css/myphoto-hcm.css" (click)="closeMenu()">
+                <i class="fa fa-adjust"></i> High Contrast Mode
+              </a>
+          </div>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<div class="alert alert-info alert-position hide-before-animated" data-alert-animate="bounceIn" width="90%">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <a href="#" class="close minimize" data-minimize="alert" aria-label="minimize">_</a>
+  <a href="#" class="close expand hidden-xs-up" data-expand="alert" aria-label="expand">+</a>
+
+  <strong><i class="fa fa-exclamation"></i> Special Offer - </strong>
+  <!-- <span>2 FOR 1 PRINTS TODAY ONLY WITH PROMO CODE <span style="font-style: italic">BOOTSTRAP</span></span> -->
+  <span>DISCOUNTS ON SMALL GROUP EVENTS IN SUNNY MONTEREY TODAY ONLY WITH PROMO CODE <span style="font-style: italic">MONTEREY-EVENT-NOW</span></span>
+</div>
+
+<!--
+<div class="alert alert-danger alert-dismissible alert-myphoto" 
+    style="position: fixed; margin-top: 4em; width: 90%; margin-left: 4em;">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong class="alert-heading"><i class="fa fa-exclamation"></i>Unsupported browser</strong>
+      Internet Explorer 8 and lower are not supported by this website.
+</div>
+-->
+<div class="alert alert-danger alert-dismissible alert-position" id="unsupported-browser-alert">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong class="alert-heading"><i class="fa fa-exclamation"></i> Unsupported
+      browser</strong>
+    Internet Explorer 8 and lower are not supported by this website.
+</div>
+
+<div class="modal" id="profile-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        <h4 class="modal-title" id="profile-modal-label">Profile</h4>
+      </div>
+      <div class="modal-body">
+        Profile
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="settings-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+        <h4 class="modal-title" id="settings-modal-label">Settings</h4>
+      </div>
+      <div class="modal-body">
+        Settings
+      </div>
+    </div>
+  </div>
+</div>
