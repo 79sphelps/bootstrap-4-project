@@ -64,7 +64,8 @@ if (process.env.NODE_ENV !== "dev") {
   //app.use("/", express.static(path.join(__dirname, "/dist")));
   app.use("/", express.static(path.join("/dist/event-planning-nw")));
 }*/
-app.use(express.static(path.join(__dirname, "/dist/event-planning-nw")));
+//app.use(express.static(path.join(__dirname, "/dist/event-planning-nw")));
+app.use(express.static(path.join(__dirname, "/dist")));
 
 /*
  |--------------------------------------
