@@ -55,7 +55,7 @@ export class PersonelComponent implements OnInit, OnDestroy {
     );
   }
 
-  searchImages() {
+  searchPersonel() {
     this.filteredPersonel = this.fs.search(
       this.personelList,
       this.query,
