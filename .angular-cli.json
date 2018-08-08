@@ -25,13 +25,13 @@
         "../bower_components/tether/dist/css/tether.min.css",
         "../bower_components/bootstrap/dist/css/bootstrap.min.css",
         "../bower_components/components-font-awesome/css/fontawesome.min.css",
-        "./assets/css/bootstrap.lightbox.css",
+        "./assets/scss/bootstrap.lightbox.scss",
         "../bower_components/datatables/media/css/datatables.bootstrap.min.css",
-        "styles.css",
-        "./assets/css/alert.css",
-        "./assets/css/carousel.css",
-        "./assets/css/a11yhcm.css",
-        "./assets/css/myphoto-hcm.css",
+        "./assets/scss/styles.scss",
+        "./assets/scss/alert.scss",
+        "./assets/scss/carousel.scss",
+        "./assets/scss/a11yhcm.scss",
+        "./assets/scss/myphoto-hcm.scss",
         "../bower_components/animate.css/animate.min.css",
         "../bower_components/hover/css/hover-min.css"
       ],
@@ -82,7 +82,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "component": {}
   }
 }
