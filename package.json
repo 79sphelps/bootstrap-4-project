@@ -39,7 +39,7 @@
     "@angular/cli": "~1.7.3",
     "typescript": "~2.5.3"
   },
-  "postinstall": "ng build --aot -prod",
+  "postinstall": "ng build --prod",
   "heroku-postbuild": "ng build --prod",
   "engines": {
     "node": "~8.9.4",
