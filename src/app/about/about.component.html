@@ -1,6 +1,6 @@
 <div class="container-fluid myphoto-section bg-myphoto-dark" id="about">
     <div class="container">
-        <div class="row">
+        <div class="row" style="margin-left: 0px; margin-right: 0px;">
             <h3>About</h3>
             <div class="card bg-myphoto-light">
                 <div class="card-block">
@@ -10,6 +10,8 @@
                     <p>MyPhoto also provides superb printing options of all shapes and sizes, on any canvas, in any form. From large canvas prints to personalised photo albums, MyPhoto provides it all.</p>
                     <p>MyPhoto provides a full, holistic solution for all your photography needs.</p>
                     -->
+
+                    <!--
                     <p>
                         At Event Planning NW we believe that providing event support is about more than just boots on the ground. We feel that the only way to provide excellent event experiences is to begin with a comprehensive understanding of the entire event management process. Without a true appreciation of the overall scope of a program, and how our piece fits into the larger puzzle, it would be impossible to provide the outstanding service clients deserve. We are truly committed to providing the very best destination management and corporate event staffing services for our client's events. 
                     </p>
@@ -17,11 +19,17 @@
                     <p>
                         Leading our team of superstar planners and on-site staff is Founder and Chief Event Officer, Rachel Phelps. Rachel has been managing events for more than 5 years, successfully launching and operating programs ranging in size, scope and industry from coast to coast. She has built a developed a solid reputation as an innovative, creative and committed planner with an unmatched passion for service, expert attention to detail and obsession with the perfect 'attendee experience'. Her years of experience includes planning some of the largest nonprofit events in Washington, DC, to managing luxury destination management programs throughout Southern California and Oregon. In addition to her on-site experience, Rachel also holds a Masters of Communication, with an Event Management concentration, from The Gonzaga University, which made her uniquely qualified to launch Event Planning NW, one of the NW's Destination Management and Corporate Event Staffing Companies. 
                     </p>
+                    -->
+                    <!-- <p>{{ homepage && homepage.aboutMsg }}</p>
+                    -->
+                    <p [innerHTML]="homepage && homepage.aboutMsg"></p>
 
                     <blockquote class="blockquote">
-                        <p>Event planning and superior customer service are our passion!</p>
+                        <!-- <p>Event planning and superior customer service are our passion!</p> -->
+                        <p>{{ homepage && homepage.personHighlightQuote }}</p>
                         <footer class="blockquote-footer">
-                            Rachel Phelps, <cite>Event Planning NW</cite>
+                            {{ homepage && homepage.personHighlight }},
+                            <cite>Event Planning NW</cite>
                         </footer>
                     </blockquote>
 
@@ -32,16 +40,16 @@
 
                             <figure class="figure">
                                 <img [src]="my_image" style="width: 100px; height: auto;" class="figure-img">
-                                <figcaption class="figure-caption">Sample text.</figcaption>
+                                <figcaption class="figure-caption">{{homepage && homepage.personHighlightThumbnailCaption }}</figcaption>
                             </figure>
 
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">Rachel Phelps</h4>
-                            Some text about Rachel, our Chief Event Officer...
+                            <h4 class="media-heading">{{ homepage && homepage.personHighlight }} </h4>
+                            {{ homepage && homepage.personHighlightBio }}
                         </div>
                     </div>
-            
+
                 </div>
 
             </div>

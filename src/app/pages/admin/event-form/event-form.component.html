@@ -1,0 +1,113 @@
+<!-- src/app/pages/admin/event-form/event-form.component.html -->
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+  <!-- Title -->
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input id="title" type="text" class="form-control" formControlName="title" [maxlength]="ef.titleMax">
+    <div *ngIf="formErrors.title" class="small text-danger formErrors" [innerHTML]="formErrors.title">
+    </div>
+  </div>
+
+  <!-- Location -->
+  <div class="form-group">
+    <label for="location">Location</label>
+    <input id="location" type="text" class="form-control" formControlName="location" [maxlength]="ef.locMax">
+    <div *ngIf="formErrors.location" class="small text-danger formErrors" [innerHTML]="formErrors.location">
+    </div>
+  </div>
+
+  <!-- Group Size -->
+  <div class="form-group">
+    <label for="groupSize">Group Size</label>
+    <input id="groupSize" type="text" class="form-control" formControlName="groupSize" [maxlength]="ef.locMax">
+    <div *ngIf="formErrors.groupSize" class="small text-danger formErrors" [innerHTML]="formErrors.groupSize">
+    </div>
+  </div>
+
+  <!-- Event Type -->
+  <div class="form-group">
+    <label for="eventType">Event Type</label>
+    <input id="eventType" type="text" class="form-control" formControlName="eventType" [maxlength]="ef.locMax">
+    <div *ngIf="formErrors.eventType" class="small text-danger formErrors" [innerHTML]="formErrors.eventType">
+    </div>
+  </div>
+
+  <!-- Price -->
+  <div class="form-group">
+    <label for="price">Price</label>
+    <input id="price" type="text" class="form-control" formControlName="price" [maxlength]="ef.locMax">
+    <div *ngIf="formErrors.price" class="small text-danger formErrors" [innerHTML]="formErrors.price">
+    </div>
+  </div>
+
+  <!-- Purpose -->
+  <div class="form-group">
+    <label for="purpose">Purpose</label>
+    <input id="purpose" type="text" class="form-control" formControlName="purpose" [maxlength]="ef.locMax">
+    <div *ngIf="formErrors.purpose" class="small text-danger formErrors" [innerHTML]="formErrors.purpose">
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <textarea id="description" class="form-control" rows="3" formControlName="description" [maxlength]="ef.descMax"></textarea>
+    <div *ngIf="formErrors.description" class="small text-danger formErrors" [innerHTML]="formErrors.description">
+    </div>
+  </div>
+
+  <!-- View Public -->
+  <div class="form-group">
+    <label class="label-inline-group">List event publicly?</label>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input id="viewPublic-yes" type="radio" class="form-check-input" [value]="true" formControlName="viewPublic"> Yes
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input id="viewPublic-no" type="radio" class="form-check-input" [value]="false" formControlName="viewPublic"> No
+      </label>
+    </div>
+    <div *ngIf="formErrors.viewPublic" class="small text-danger formErrors" [innerHTML]="formErrors.viewPublic">
+    </div>
+  </div>
+
+  <!-- Editable -->
+  <div class="form-group">
+    <label class="label-inline-group">Editable</label>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input id="editable-yes" type="radio" class="form-check-input" [value]="true" formControlName="editable"> Yes
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input id="editable-no" type="radio" class="form-check-input" [value]="false" formControlName="editable"> No
+      </label>
+    </div>
+    <div *ngIf="formErrors.editable" class="small text-danger formErrors" [innerHTML]="formErrors.editable">
+    </div>
+  </div>
+
+  <!-- Thumbnail -->
+  <div class="form-group">
+    <label for="thumbnail">Thumbnail</label>
+    <input id="thumbnail" type="text" class="form-control" formControlName="thumbnail" [maxlength]="ef.locMax">
+    <div *ngIf="formErrors.thumbnail" class="small text-danger formErrors" [innerHTML]="formErrors.thumbnail">
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" [attr.disabled]="eventForm.invalid || submitting ? true : null" [innerText]="submitBtnText"></button>
+    <!-- https://github.com/angular/angular/issues/11271#issuecomment-289806196 -->
+    <app-submitting *ngIf="submitting"></app-submitting>
+    <a *ngIf="!submitting" class="btn btn-link" (click)="resetForm()" tabindex="0">Reset Form</a>
+
+    <!-- API submission error -->
+    <p *ngIf="error" class="mt-3 alert alert-danger">
+      <strong>Error:</strong> There was a problem submitting the event. Please try again.
+    </p>
+  </div>
+</form>

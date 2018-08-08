@@ -1,0 +1,16 @@
+/* src/assets/scss/partials/_responsive.partial.scss */
+/*--------------------
+      RESPONSIVE
+--------------------*/
+
+/*-- Variables --*/
+
+$large: 'screen and (min-width: 768px)';
+
+/*-- Mixins --*/
+
+@mixin mq($mqString) {
+  @media #{$mqString} {
+    @content;
+  }
+}

@@ -1,0 +1,58 @@
+<!-- src/app/pages/admin/event-form/event-form.component.html -->
+<form [formGroup]="personelForm" (ngSubmit)="onSubmit()">
+  <!-- Title -->
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input id="name" type="text" class="form-control" formControlName="name" [maxlength]="ef.titleMax">
+    <div *ngIf="formErrors.name" class="small text-danger formErrors" [innerHTML]="formErrors.name">
+    </div>
+  </div>
+
+  <!-- Location -->
+  <div class="form-group">
+    <label for="role">Role</label>
+    <input id="role" type="text" class="form-control" formControlName="role" [maxlength]="ef.locMax">
+    <div *ngIf="formErrors.role" class="small text-danger formErrors" [innerHTML]="formErrors.role">
+    </div>
+  </div>
+
+  <!-- Description -->
+  <!--
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <textarea id="description" class="form-control" rows="3" formControlName="description" [maxlength]="ef.descMax"></textarea>
+    <div *ngIf="formErrors.description" class="small text-danger formErrors" [innerHTML]="formErrors.description">
+    </div>
+  </div>
+  -->
+
+  <!-- Editable -->
+  <div class="form-group">
+    <label class="label-inline-group">Editable</label>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input id="editable-yes" type="radio" class="form-check-input" [value]="true" formControlName="editable"> Yes
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input id="editable-no" type="radio" class="form-check-input" [value]="false" formControlName="editable"> No
+      </label>
+    </div>
+    <div *ngIf="formErrors.editable" class="small text-danger formErrors" [innerHTML]="formErrors.editable">
+    </div>
+  </div>
+
+  <!-- Submit -->
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" [attr.disabled]="personelForm.invalid || submitting ? true : null" [innerText]="submitBtnText"></button>
+    <!-- https://github.com/angular/angular/issues/11271#issuecomment-289806196 -->
+    <app-submitting *ngIf="submitting"></app-submitting>
+    <a *ngIf="!submitting" class="btn btn-link" (click)="resetForm()" tabindex="0">Reset Form</a>
+
+    <!-- API submission error -->
+    <p *ngIf="error" class="mt-3 alert alert-danger">
+      <strong>Error:</strong> There was a problem submitting the personel. Please try again.
+    </p>
+  </div>
+</form>

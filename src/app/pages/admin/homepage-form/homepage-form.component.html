@@ -1,0 +1,100 @@
+<!-- src/app/pages/admin/event-form/event-form.component.html -->
+<form [formGroup]="homepageForm" (ngSubmit)="onSubmit()">
+  <!-- Welcome Msg -->
+  <div class="form-group">
+    <label for="welcomeMsg">Welcome Message</label>
+    <textarea id="welcomeMsg" type="text" class="form-control" rows="10" formControlName="welcomeMsg" [maxlength]="ef.locMax"></textarea>
+    <div *ngIf="formErrors.welcomeMsg" class="small text-danger formErrors" [innerHTML]="formErrors.welcomeMsg">
+    </div>
+  </div>
+
+  <!-- About Msg -->
+  <div class="form-group">
+    <label for="aboutMsg">About Message</label>
+    <textarea id="aboutMsg" type="text" class="form-control" rows="10" formControlName="aboutMsg" [maxlength]="ef.locMax"></textarea>
+    <div *ngIf="formErrors.aboutMsg" class="small text-danger formErrors" [innerHTML]="formErrors.aboutMsg">
+    </div>
+  </div>
+
+  <!-- About Quote -->
+  <div class="form-group">
+    <label for="aboutQuote">About Quote</label>
+    <input id="aboutQuote" type="text" class="form-control" formControlName="aboutQuote" [maxlength]="ef.locMax">
+    <div *ngIf="formErrors.aboutQuote" class="small text-danger formErrors" [innerHTML]="formErrors.aboutQuote">
+    </div>
+  </div>
+
+  <!-- Person Highlight -->
+  <div class="form-group">
+    <label for="personHighlight">Person Highlight</label>
+    <input id="personHighlight" type="text" class="form-control" formControlName="personHighlight" [maxlength]="ef.locMax">
+    <div *ngIf="formErrors.personHighlight" class="small text-danger formErrors" [innerHTML]="formErrors.personHighlight">
+    </div>
+  </div>
+
+  <!-- Person Quote -->
+  <div class="form-group">
+    <label for="personHighlightQuote">Person Quote</label>
+    <input id="personHighlightQuote" type="text" class="form-control" formControlName="personHighlightQuote" [maxlength]="ef.locMax">
+    <div *ngIf="formErrors.personHighlightQuote" class="small text-danger formErrors" [innerHTML]="formErrors.personHighlightQuote">
+    </div>
+  </div>
+
+  <!-- Person Bio -->
+  <div class="form-group">
+    <label for="personHighlightBio">Person Bio</label>
+    <input id="personHighlightBio" type="text" class="form-control" formControlName="personHighlightBio" [maxlength]="ef.locMax">
+    <div *ngIf="formErrors.personHighlightBio" class="small text-danger formErrors" [innerHTML]="formErrors.personHighlightBio">
+    </div>
+  </div>
+
+  <!-- Person Thumbnail -->
+  <div class="form-group">
+    <label for="personHighlightThumbnail">Person Thumbnail</label>
+    <input id="personHighlightThumbnail" type="text" class="form-control" formControlName="personHighlightThumbnail" [maxlength]="ef.locMax">
+    <div *ngIf="formErrors.personHighlightThumbnail" class="small text-danger formErrors" [innerHTML]="formErrors.personHighlightThumbnail">
+    </div>
+  </div>
+
+  <!-- Person Thumbnail Caption -->
+  <div class="form-group">
+    <label for="personHighlightThumbnailCaption">Person Thumbnail Caption</label>
+    <input id="personHighlightThumbnailCaption" type="text" class="form-control" formControlName="personHighlightThumbnailCaption"
+      [maxlength]="ef.locMax">
+    <div *ngIf="formErrors.personHighlightThumbnailCaption" class="small text-danger formErrors" [innerHTML]="formErrors.personHighlightThumbnailCaption">
+    </div>
+  </div>
+
+
+  <!-- Editable -->
+  <div class="form-group">
+    <label class="label-inline-group">Editable</label>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input id="editable-yes" type="radio" class="form-check-input" [value]="true" formControlName="editable"> Yes
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input id="editable-no" type="radio" class="form-check-input" [value]="false" formControlName="editable"> No
+      </label>
+    </div>
+    <div *ngIf="formErrors.editable" class="small text-danger formErrors" [innerHTML]="formErrors.editable">
+    </div>
+  </div>
+
+
+
+  <!-- Submit -->
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary" [attr.disabled]="homepageForm.invalid || submitting ? true : null" [innerText]="submitBtnText"></button>
+    <!-- https://github.com/angular/angular/issues/11271#issuecomment-289806196 -->
+    <app-submitting *ngIf="submitting"></app-submitting>
+    <a *ngIf="!submitting" class="btn btn-link" (click)="resetForm()" tabindex="0">Reset Form</a>
+
+    <!-- API submission error -->
+    <p *ngIf="error" class="mt-3 alert alert-danger">
+      <strong>Error:</strong> There was a problem submitting the homepage. Please try again.
+    </p>
+  </div>
+</form>

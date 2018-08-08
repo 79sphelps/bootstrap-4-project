@@ -1,21 +1,67 @@
+<!-- NOTE: In order to get the modal to show up properly, we had to add a small change to the 
+  carousel.js code to append the modal to the end of the body. This corrected some of the positioning
+  and behavioral issues seen.
+-->
+
 <div class="modal fade carousel-modal" id="carousel-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title"></h4>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <img>
+            </div>
         </div>
-        <div class="modal-body">
-          <img>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
 <div id="gallery-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
     <div class="carousel-inner" role="listbox">
+        <!-- [ngClass]="{'RowHeaderCSS' : isFirstRow}" -->
+        <!-- [class.active]="isFirst" -->
+        <!--
+        <div *ngFor="let image of imageList; let isFirst = first;" >
+            <div class="carousel-item" [ngClass]="{'active' : isFirst}" >
+                <img data-modal-picture="#carousel-modal" [src]="image.path">
+                <div class="carousel-caption">
+                    {{ image.caption }}
+                </div>
+            </div>
+           
+        </div>
+        -->
+
+        <!--
+        <div class="carousel-item" [class.active]="isFirst">
+            <img data-modal-picture="#carousel-modal" [src]="image">
+            <div class="carousel-caption">
+                caption...
+            </div>
+        </div>
+        -->
+
+        <div *ngIf="imageList" class="carousel-item active">
+            <img data-modal-picture="#carousel-modal" [src]="imageList && imageList[0].path">
+            <div class="carousel-caption">
+                {{ imageList && imageList[0].caption }}
+            </div>
+        </div>
+
+
+        <!-- <div *ngFor="let image of imageList; let i = index" [attr.data-index]="1" class="carousel-item"> -->
+        <div *ngFor="let image of imageList | slice:1" class="carousel-item">
+            <img data-modal-picture="#carousel-modal" [src]="image.path">
+            <div class="carousel-caption">
+                {{ image.caption }}
+            </div>
+        </div>
+
+        <!--
         <div class="carousel-item active">
-            <!-- <img src="assets/images/IMG_4735.jpg"> -->
             <img data-modal-picture="#carousel-modal" [src]="image_1">
             <div class="carousel-caption">
                 Brazil
@@ -33,7 +79,9 @@
                 Skydive
             </div>
         </div>
+        -->
     </div>
+
     <a class="left carousel-control" href="#gallery-carousel" role="button" data-slide="prev">
         <span class="icon-prev" aria-hidden="true"></span>
     </a>
@@ -41,8 +89,13 @@
         <span class="icon-next" aria-hidden="true"></span>
     </a>
     <ol class="carousel-indicators">
+        <!--
         <li data-target="#gallery-carousel" data-slide-to="0" class="active"></li>
         <li data-target="#gallery-carousel" data-slide-to="1"></li>
         <li data-target="#gallery-carousel" data-slide-to="2"></li>
+        -->
+        <!-- <li data-target="#gallery-carousel" data-slide-to="0" class="active"></li> -->
+        <li *ngFor="let image of imageList; let i = index" data-target="#gallery-carousel" [attr.data-slide-to]="i"></li>
     </ol>
+
 </div>

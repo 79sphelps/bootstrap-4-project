@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row" style="margin-left: 0px; margin-right: 0px;">
+
+
+
+    <!-- src/app/pages/admin/update-event/update-event.component.html -->
+    <h1 class="text-center">{{ pageTitle }}</h1>
+
+    <app-loading *ngIf="loading"></app-loading>
+
+    <ng-template [ngIf]="utils.isLoaded(loading)">
+
+      <div *ngIf="image" class="card">
+
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="[]" [queryParams]="{ tab: 'edit' }" [ngClass]="{ 'active': utils.tabIs(tab, 'edit') }">Edit</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="[]" [queryParams]="{ tab: 'delete' }" [ngClass]="{ 'active': utils.tabIs(tab, 'delete') }">Delete</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card-body" style="padding: 10px;">
+          <!-- Edit event form -->
+          <app-images-form *ngIf="utils.tabIs(tab, 'edit')" [image]="image"></app-images-form>
+
+          <!-- Delete event -->
+          <app-delete-image *ngIf="utils.tabIs(tab, 'delete')" [image]="image"></app-delete-image>
+        </div>
+
+      </div>
+
+
+      <!-- Error loading event -->
+      <p *ngIf="error" class="alert alert-danger">
+        <strong>Error:</strong> Image data could not be retrieved. View
+        <a routerLink="/admin/images" class="alert-link">Admin Images</a>.
+      </p>
+    </ng-template>
+
+  </div>
+</div>

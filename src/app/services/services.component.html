@@ -1,9 +1,9 @@
 <div class="container-fluid myphoto-section bg-myphoto-dark" id="services">
-    <div class="container">
-      <div class="row">
-        <h3>Services</h3>
-      </div>
-      <ul class="nav nav-tabs">
+  <div class="container">
+    <div class="row">
+      <h3>Services and Events</h3>
+    </div>
+    <ul class="nav nav-tabs">
       <li class="nav-item">
         <a href="#services-events" data-toggle="tab" class="nav-link active">Events
         </a>
@@ -13,7 +13,7 @@
       </li>
       <li class="nav-item">
         <a href="#services-prints" data-toggle="tab" class="nav-link">
-          Event Descriptions</a>
+          Events List</a>
       </li>
 
       <li class="nav-item">
@@ -22,90 +22,148 @@
       </li>
 
     </ul>
-      <div class="tab-content bg-myphoto-light">
-        <div role="tabpanel" class="tab-pane active" id="services-events">
-          <div class="container">
-            <div class="row">
-              <div id="services-events-content">
-                <div id="page-1">
-                  <h3>Sample Event #1</h3>
-                  <p>
-                    <span class="thumbnails" data-toggle="lightbox">
-                      <img src="assets/images/event1.jpg" align="left" width="80" height="45"
-                           class="thumbnail" data-target="assets/images/event1.jpg"/>
-                    </span>
-                    
-                    Purpose: Team building events are meant to build upon the company's strengths while building employee confidence, goodwill, and morale. Team building events also provide the unique opportunity for employees to spend time together in a non-work environment working together to solve puzzles and complete activities. Team building events are meant to do just that - build stronger teams. 
-                    <br>
-                           
-                    Description: Corporate team building events have been epitomized by outdoor and physical group activities like a ropes course. In fact, there are companies all around the nation that specialize in hosting team building events in their intricate indoor and outdoor courses. That said, team building events can also focus on other types of team building activities from workshops to sensitivity training.  
-                    
-                  </p>
-                  <h3>Sample Event #2</h3>
-                  <p>
-                    <span class="thumbnails" data-toggle="lightbox">
-                      <img src="assets/images/event2.jpg" align="left" width="80" height="45"
-                           class="thumbnail" data-target="assets/images/event2.jpg"/>
-                    </span>  
-                  
-                    Purpose: Product launch events can include internal product launch meetings to inform all employees across the company about any upcoming products to full-blown product launch parties to create a buzz surrounding the product's release among customers and the media. Product launch events are most common for business to consumer (B2C) companies.
-                    <br>
-                       
-                    Description: Product launch events are generally meant to generate media coverage and industry buzz prior to a product's release. The launch event may include a flashy introduction to the product along with an address from the companies most important executives. Large product launches also tend to be very much a big party with well-known guests, dinner, and entertainment depending on the industry. 
-                  
-                  </p>
+
+    <div class="tab-content bg-myphoto-light">
+      <div role="tabpanel" class="tab-pane active" id="services-events">
+        <div class="container">
+          <div class="row">
+
+            <div id="pagination">
+              <app-pagination></app-pagination>
+            </div>
+
+            <!--
+            <div id="services-events-content">
+              <div id="page-1">
+
+                <div *ngFor="let event of eventList">
+                  <div class="card" style="margin-right: 2rem;">
+                    <div class="card-body" style="margin: 5px; min-height: 110px; ">
+                      <h3>{{ event.title }}</h3>
+                      <p>
+                        <span class="thumbnails" data-toggle="lightbox">
+                          <img [src]="event.thumbnail" alt="" class="thumbnail" align="left" width="100" [attr.data-target]="event.thumbnail" />
+                        </span>
+
+                        Purpose: {{ event.purpose }}
+                        <br> Description: {{ event.description }}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div id="page-2">
-                  <h3>Sample Event #3</h3>
-                  <p>
-                    <span class="thumbnails" data-toggle="lightbox">
-                      <img src="assets/images/event3.jpg" align="left" width="80" height="45"
-                           class="thumbnail" data-target="assets/images/event3.jpg"/>
-                    </span>
-                    
-                        Purpose: Organizations plan and hold these meetings with targeted audiences, and provide them with relevant information.
-                    <br>
-                         
-                        Description: Seminars are usually shorter events, lasting a couple hours, ½ day, or even a whole workday. They have single or multiple speakers and generally keep all participants together in the same space. Conferences, on the other hand, typically have multiple sessions that occur concurrently that are geared toward different interests, different positions or roles, and even skill level. They are typically held at hotels, begin with a keynote session and then hold breakout sessions by topic. A conference is usually planned for at least half of a day though generally conferences span the course of one to two days or sometimes longer.
-                      
-                  </p>
-                </div>
-              </div>
-              <div id="services-events-pagination" [ngStyle]="{'width': '250px'}">
+
+                
+                <h3>Sample Event #1</h3>
+                <p>
+                  <span class="thumbnails" data-toggle="lightbox">
+                    <img src="assets/images/event1.jpg" align="left" width="80" height="45" class="thumbnail" data-target="assets/images/event1.jpg"
+                    />
+                  </span>
+
+                  Purpose: Team building events are meant to build upon the company's strengths while building employee confidence, goodwill,
+                  and morale. Team building events also provide the unique opportunity for employees to spend time together
+                  in a non-work environment working together to solve puzzles and complete activities. Team building events
+                  are meant to do just that - build stronger teams.
+                  <br> Description: Corporate team building events have been epitomized by outdoor and physical group activities
+                  like a ropes course. In fact, there are companies all around the nation that specialize in hosting team
+                  building events in their intricate indoor and outdoor courses. That said, team building events can also
+                  focus on other types of team building activities from workshops to sensitivity training.
+
+                </p>
+                <h3>Sample Event #2</h3>
+                <p>
+                  <span class="thumbnails" data-toggle="lightbox">
+                    <img src="assets/images/event2.jpg" align="left" width="80" height="45" class="thumbnail" data-target="assets/images/event2.jpg"
+                    />
+                  </span>
+                  Purpose: Product launch events can include internal product launch meetings to inform all employees across the company about
+                  any upcoming products to full-blown product launch parties to create a buzz surrounding the product's release
+                  among customers and the media. Product launch events are most common for business to consumer (B2C) companies.
+                  <br> Description: Product launch events are generally meant to generate media coverage and industry buzz prior
+                  to a product's release. The launch event may include a flashy introduction to the product along with an
+                  address from the companies most important executives. Large product launches also tend to be very much
+                  a big party with well-known guests, dinner, and entertainment depending on the industry.
+                </p>
+                
 
               </div>
+
+            
+              <div id="page-2">
+               
+                <h3>Sample Event #3</h3>
+                <p>
+                  <span class="thumbnails" data-toggle="lightbox">
+                    <img src="assets/images/event3.jpg" align="left" width="80" height="45" class="thumbnail" data-target="assets/images/event3.jpg"
+                    />
+                  </span>
+                  Purpose: Organizations plan and hold these meetings with targeted audiences, and provide them with relevant information.
+                  <br> Description: Seminars are usually shorter events, lasting a couple hours, ½ day, or even a whole workday.
+                  They have single or multiple speakers and generally keep all participants together in the same space. Conferences,
+                  on the other hand, typically have multiple sessions that occur concurrently that are geared toward different
+                  interests, different positions or roles, and even skill level. They are typically held at hotels, begin
+                  with a keynote session and then hold breakout sessions by topic. A conference is usually planned for at
+                  least half of a day though generally conferences span the course of one to two days or sometimes longer.
+                </p>
+
+              </div>
+              
+
+            </div>
+            
+
+            <div id="services-events-pagination" [ngStyle]="{'width': '250px'}" (click)="_getEventList()">
+
+            </div>
+            -->
+
+
+          </div>
+        </div>
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="services-personal">
+        <div class="container">
+          <div class="row" [ngStyle]="{'padding-left': '30px'}">
+            <div id="services-personel-content">
+              <h3>Our Event Planning Team</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at consectetur felis. Sed ornare eu mauris aliquet
+                laoreet. Aliquam erat volutpat. Integer finibus justo eu mauris elementum finibus. Integer accumsan erat
+                nisi, sed eleifend sapien porta malesuada. Sed tempus tortor luctus enim ultricies blandit. Nam facilisis
+                velit eu orci porttitor consectetur. Suspendisse pulvinar sit amet eros non gravida. Quisque sodales risus
+                diam, ut egestas metus mattis sed.</p>
             </div>
           </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="services-personal">
-          <div class="container">
-            <div class="row" [ngStyle]="{'padding-left': '30px'}">
-              <div id="services-personel-content">
-                <h3>Our Event Planning Team</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at consectetur felis. Sed ornare eu mauris aliquet laoreet. Aliquam erat volutpat. Integer finibus justo eu mauris elementum finibus. Integer accumsan erat nisi, sed eleifend sapien porta malesuada. Sed tempus tortor luctus enim ultricies blandit. Nam facilisis velit eu orci porttitor consectetur. Suspendisse pulvinar sit amet eros non gravida. Quisque sodales risus diam, ut egestas metus mattis sed.</p>
-              </div>    
-            </div>
-          </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="services-prints">
+        <div class="m-x-auto" [ngStyle]="{'box-shadow': '5px 5px 5px grey', 'width': '50%'}">
+          <h1 class="bg-primary text-xs-center" [ngStyle]="{'padding-bottom': '5px'}">Special Offers</h1>
         </div>
-        <div role="tabpanel" class="tab-pane" id="services-prints">
-          <div class="m-x-auto" [ngStyle]="{'box-shadow': '5px 5px 5px grey', 'width': '50%'}" >
-            <h1 class="bg-primary text-xs-center" [ngStyle]="{'padding-bottom': '5px'}">Special Offers</h1>
-          </div>
-          <div class="container">
-            <h1 class="hidden-lg-down">Our Events</h1>
-            <div style="max-width: 90%;">
-              <!-- <table id="services-prints-table" class="table table-striped table-responsive" width="100%"> -->
-              <table id="no-more-tables" class="table-striped" width="100%">  
-                <thead>
-                  <tr>
-                    <th>Location</th>
-                    <th>Group Size</th>
-                    <th>Event Type</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
+        <div class="container">
+          <h1 class="hidden-lg-down">Our Events</h1>
+          <div style="max-width: 90%;">
+            <!-- <table id="services-prints-table" class="table table-striped table-responsive" width="100%"> -->
+            <table id="no-more-tables" class="table-striped" width="100%">
+              <thead>
+                <tr>
+                  <th>Location</th>
+                  <th>Group Size</th>
+                  <th>Event Type</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
 
-                <tbody>
+              <tbody>
+
+                <tr *ngFor="let event of eventList">
+                  <td>{{ event.location }}</td>
+                  <td>{{ event.groupSize }}</td>
+                  <td>{{ event.eventType }}</td>
+                  <td>{{ event.price }}</td>
+                </tr>
+
+                <!--
                     <tr>
                       <td>Portland, OR</td>
                       <td>Large</td>
@@ -180,20 +238,27 @@
                     <td>Medium</td>
                     <td>Executive Retreat</td>
                     <td>$$</td>
-                  </tr>                    
-                </tbody>
-              </table>
-            </div>
-            <!-- <div class="bg-danger pull-xs-right"> -->
-            <div class="bg-danger">
-             <p class="label text-centered">Terms and Conditions Apply</p>
-            </div>
+                  </tr>    
+                  -->
+              </tbody>
+            </table>
+          </div>
+          <!-- <div class="bg-danger pull-xs-right"> -->
+          <div class="bg-danger">
+            <p class="label text-centered">Terms and Conditions Apply</p>
           </div>
         </div>
+      </div>
 
-        <div role="tabpanel" class="tab-pane" id="services-testimonials">
-            <div class="container">
-              <div class="myphoto-testimonial-grid animated fadeIn" data-columns>
+      <div role="tabpanel" class="tab-pane" id="services-testimonials">
+        <div class="container">
+          <div class="myphoto-testimonial-grid animated fadeIn" data-columns>
+            <div *ngFor="let testimony of testimonialsList" class="myphoto-testimonial-column hvr-grow-shadow hvr-sweep-to-top">
+              <h6>{{ testimony.name }}</h6>
+              <p>{{ testimony.quote }}</p>
+            </div>
+
+            <!--
                   <div class="myphoto-testimonial-column hvr-grow-shadow hvr-sweep-to-top">
                     <h6>Debbie</h6>
                     <p>Great service! Would recommend to friends!</p>
@@ -230,11 +295,12 @@
                     <h6>Tony</h6>
                     <p>Provided our companies greatest team building event! Great stuff!</p>
                   </div>
-              </div>
-            </div>
+                  -->
           </div>
-
-
+        </div>
       </div>
+
+
     </div>
   </div>
+</div>

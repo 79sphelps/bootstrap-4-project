@@ -1,0 +1,271 @@
+/*
+.hvr-icon-bob:before {
+  content: "\f077";
+  position: absolute;
+  right: 1em;
+  padding: 0 1px;
+  font-family: FontAwesome;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+*/
+/* You can add global styles to this file, and also import other style files */
+// @import '~bootstrap/dist/css/bootstrap.min.css';
+//@import "~bootstrap/scss/bootstrap.scss";
+
+// partials
+@import "partials/layout.vars";
+@import "partials/responsive.partial";
+
+// global styles
+@import "base";
+
+/*
+.hvr-icon-bob:before {
+  content: "\f077";
+  position: absolute;
+  right: 1em;
+  padding: 0 1px;
+  font-family: FontAwesome;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+*/
+h1 {
+  font-family: "Poiret One", cursive;
+}
+h2 {
+  font-family: "Poiret One", cursive;
+}
+h3 {
+  font-family: "Poiret One", cursive;
+}
+h4 {
+  font-family: "Poiret One", cursive;
+}
+h5 {
+  font-family: "Poiret One", cursive;
+}
+h6 {
+  font-family: "Poiret One", cursive;
+}
+.nav {
+  font-family: "Poiret One", cursive;
+}
+.navbar {
+  font-family: "Poiret One", cursive;
+}
+body {
+  font-family: "Lato", cursive;
+}
+.myphoto-section {
+  //min-height: 450px;
+  padding: 0.5em 2em;
+}
+.bg-myphoto-dark {
+  background-color: #504747;
+  color: white;
+  .nav-tabs {
+    a {
+      color: white;
+    }
+  }
+}
+.bg-myphoto-light {
+  background-color: white;
+  color: #504747;
+}
+.bg-myphoto-welcome {
+  background-image: url("../images/skyline.png");
+  background-size: cover;
+  color: #504747;
+}
+.jumbotron-welcome {
+  background-image: url("../images/skyline.png");
+  background-size: cover;
+  color: white;
+}
+.navbar-myphoto {
+  background-color: #504747;
+  border-color: black;
+  border-radius: 0;
+  margin-bottom: 0px;
+  .navbar-brand {
+    color: white;
+    font-weight: bold;
+  }
+  .nav-pills {
+    > li {
+      > a {
+        color: white;
+        &:hover {
+          background-color: #504747;
+          color: gray;
+        }
+        &:focus {
+          background-color: #504747;
+          color: gray;
+        }
+      }
+    }
+    > li.active {
+      > a {
+        background-color: #504747;
+        color: gray;
+      }
+    }
+  }
+  > .navbar-toggler {
+    color: white;
+  }
+  .dropdown-menu {
+    background-color: #504747;
+    border-color: black;
+    > a {
+      color: white;
+      background-color: #504747;
+      &:hover {
+        color: gray;
+        background-color: #504747;
+      }
+      &:focus {
+        color: gray;
+        background-color: #504747;
+      }
+    }
+    > .active {
+      > a {
+        &:focus {
+          color: gray;
+          background-color: #504747;
+        }
+      }
+    }
+  }
+}
+.nav-pills {
+  .nav-link.active {
+    background-color: grey;
+    &:focus {
+      background-color: grey;
+    }
+    &:hover {
+      background-color: grey;
+    }
+  }
+  .nav-item.open {
+    .nav-link {
+      background-color: grey;
+      &:focus {
+        background-color: grey;
+      }
+      &:hover {
+        background-color: grey;
+      }
+    }
+  }
+}
+footer {
+  p {
+    display: inline;
+    margin-left: 10px;
+  }
+  a {
+    color: inherit;
+  }
+}
+#services-events-content {
+  div {
+    //display: block;
+    img {
+      margin-top: 0.5em;
+      margin-right: 1em;
+    }
+  }
+  height: 15em;
+  overflow-y: scroll;
+}
+.myphoto-testimonial-grid {
+  padding-top: 30px;
+}
+.myphoto-testimonial-group {
+  padding: 0px;
+}
+.myphoto-testimonial-grid[data-columns] {
+  &::before {
+    content: "4 .col-xs-3.myphoto-testimonial-group.animated.bounceIn";
+  }
+}
+.column {
+  float: left;
+}
+.size-1of4 {
+  width: 25%;
+}
+.myphoto-testimonial-row {
+  margin-right: 5px;
+}
+.myphoto-testimonial-column {
+  padding: 10px;
+  border: 1px solid #000000;
+  margin: 5px;
+  background-color: #ffffff;
+  border-radius: 0.3rem;
+}
+.myphoto-chevron-down.hvr-icon-bob {
+  &:before {
+    content: "\f078";
+  }
+}
+.hvr-icon-bob {
+  vertical-align: top;
+  &:before {
+    content: "\f077";
+    right: 1em;
+    padding: 0 1px;
+    font-family: FontAwesome;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+#services-events {
+  .container {
+    margin-left: 2rem;
+    padding-top: 1rem;
+  }
+}
+.tab-content {
+  border-radius: 0 0.3rem 0.3rem 0.3rem;
+}
+.table-page-item {
+  margin-left: 0.5rem;
+}
+.hide-before-animated {
+  visibility: hidden;
+}
+.hide-before-animated.animated {
+  visibility: visible;
+}
+
+/*
+// hr{ clear:both; }
+.modal {
+  position: absolute;
+  top: 500px;
+  right: 100px;
+  bottom: 0;
+  left: 0;
+  //z-index: 10040;
+  z-index: 0;
+  overflow: auto;
+  overflow-y: auto;
+}
+
+body.modal-open div.modal-backdrop {
+  z-index: 0;
+}
+
+div.modal div.modal-backdrop {
+  z-index: 0;
+}
+*/

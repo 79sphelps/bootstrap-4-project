@@ -7,7 +7,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   @ViewChild('menu') menu: ElementRef;
-  
+
   constructor() { }
 
   ngOnInit() {
@@ -15,5 +15,5 @@ export class NavbarComponent implements OnInit {
 
   closeMenu() {
     this.menu.nativeElement.click();
-  }  
+  }
 }

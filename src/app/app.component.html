@@ -1,8 +1,40 @@
-<navbar></navbar>
-<welcome></welcome>
-<services></services>
-<gallery></gallery>
+<!--
+<div class="layout-canvas"
+    [ngClass]="{ 'nav-open': navOpen, 'nav-closed': !navOpen }"
+    [style.min-height]="minHeight">
 
-<about></about>
-<contact-us></contact-us>
-<custom-footer></custom-footer>
+    <app-header (navToggled)="navToggledHandler($event)"></app-header>
+
+    <div>
+      <welcome></welcome>
+      <services></services>
+      <gallery></gallery>
+      <about></about>
+      <contact-us></contact-us>
+    </div>
+
+    <app-footer></app-footer>
+
+  </div> 
+-->
+
+
+
+<!-- src/app/app.component.html -->
+
+<div class="layout-overflow">
+  <div class="layout-canvas" [ngClass]="{ 'nav-open': navOpen, 'nav-closed': !navOpen }" [style.min-height]="minHeight">
+
+    <app-header (navToggled)="navToggledHandler($event)"></app-header>
+
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+
+    <app-footer></app-footer>
+
+  </div>
+</div>
+
+
+<!-- <div id="layout-view" class="layout-view"> -->

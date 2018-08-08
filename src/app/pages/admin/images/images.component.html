@@ -1,0 +1,96 @@
+<!-- src/app/pages/admin/admin.component.html -->
+
+<div class="container">
+  <div class="row" style="margin-left: 0px; margin-right: 0px;">
+
+
+
+    <h1 class="text-center">{{ pageTitle }}</h1>
+    <app-loading *ngIf="loading"></app-loading>
+
+    <ng-template [ngIf]="utils.isLoaded(loading)">
+      <p class="lead">Welcome, {{ auth.userProfile?.name }}! You can create and administer images below.</p>
+
+      <!-- 
+        <button class="btn btn-primary" style="margin-bottom: 10px;" type="button">New Event</button>
+      -->
+
+      <p>
+        <a class="btn btn-success btn-block" routerLink="/admin/images/new">+ Create New Image</a>
+      </p>
+
+      <!-- Events -->
+      <ng-template [ngIf]="imageList">
+        <ng-template [ngIf]="imageList.length">
+          <!-- Search events -->
+          <!--
+          <label class="sr-only" for="search">Search</label>
+          <div class="search input-group mb-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Search</div>
+            </div>
+            <input id="search" type="text" class="form-control" [(ngModel)]="query" (keyup)="searchEvents()" />
+            <span class="input-group-append">
+              <button class="btn btn-danger" (click)="resetQuery()" [disabled]="!query">&times;</button>
+            </span>
+          </div>
+          -->
+          <div class="form-group input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-search"></i>
+            </span>
+            <input id="search" type="text" class="form-control" [(ngModel)]="query" (keyup)="searchImages()" />
+            <span class="input-group-addon">
+              <a (click)="resetQuery()">&times;</a>
+            </span>
+          </div>
+
+          <!-- No search results -->
+          <p *ngIf="fs.noSearchResults(filteredImages, query)" class="alert alert-warning">
+            No images found for
+            <em class="text-danger">{{ query }}</em>, sorry!
+          </p>
+
+          <!-- Events listing -->
+          <section class="list-group" [@expandCollapse]>
+            <div *ngFor="let image of fs.search(filteredImages)" class=" list-group-item list-group-item-action flex-column align-items-start ">
+
+              <div style="display: inline">
+                <span class="thumbnails" data-toggle="lightbox">
+                  <img [src]="image.path" alt="" class="thumbnail" align="right" width="100" [attr.data-target]="image.path" />
+                </span>
+
+                <div class="d-flex w-100 justify-content-between ">
+                  <a [routerLink]="[ '/admin/images', image._id] ">
+                    <h5 class="mb-1 " [innerHTML]="image.caption"></h5>
+                  </a>
+                </div>
+
+                <p class="mb-1">
+                  <a class="btn btn-info btn-sm mr-1" [routerLink]="['/admin/images/update', image._id]">Edit</a>
+                  <a class="btn btn-danger btn-sm" [routerLink]="['/admin/images/update', image._id]" [queryParams]="{tab: 'delete'}">Delete</a>
+                </p>
+              </div>
+
+
+
+            </div>
+          </section>
+        </ng-template>
+
+        <!-- No events available -->
+        <p *ngIf="!imageList.length " class="alert alert-info ">
+          No images have been created yet.
+        </p>
+      </ng-template>
+
+      <!-- Error loading events -->
+      <p *ngIf="error " class="alert alert-danger ">
+        <strong>Oops!</strong> There was an error retrieving image data.
+      </p>
+
+    </ng-template>
+
+
+  </div>
+</div>

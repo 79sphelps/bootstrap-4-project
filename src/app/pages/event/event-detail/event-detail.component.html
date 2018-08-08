@@ -1,0 +1,24 @@
+<!-- src/app/pages/event/event-detail/event-detail.component.html -->
+
+<div class="card-body" style="padding: 10px;">
+  <h2 class="card-title text-center mb-0">Event Details</h2>
+</div>
+
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    <strong>Group Size:</strong>{{ event.groupSize }}
+  </li>
+
+  <li class="list-group-item">
+    <strong>Where:</strong>{{ event.location }} (
+    <a href="https://www.google.com/maps/dir//{{ event.location }}" target="_blank">get directions</a>)
+  </li>
+</ul>
+
+<div class="card-body" *ngIf="event.description" style="padding: 10px;">
+  <p class="card-text lead" [innerHTML]="event.description"></p>
+</div>
+
+<div *ngIf="auth.isAdmin" class="card-footer text-right small">
+  <a [routerLink]="['/admin/event/update', event._id]">Edit</a>
+</div>
