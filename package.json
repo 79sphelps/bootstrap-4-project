@@ -10,10 +10,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "engines": {
-    "node": "~8.9.4",
-    "npm": "~5.6.0"
-  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^5.2.0",
@@ -38,7 +34,15 @@
     "mongoose": "^5.2.6",
     "path": "^0.12.7",
     "rxjs": "^5.5.6",
-    "zone.js": "^0.8.19"
+    "zone.js": "^0.8.19",
+    "@angular/compiler-cli": "^5.2.0",
+    "@angular/cli": "~1.7.3",
+    "typescript": "~2.5.3"
+  },
+  "postinstall": "ng build --aot -prod",
+  "engines": {
+    "node": "~8.9.4",
+    "npm": "~5.6.0"
   },
   "devDependencies": {
     "@angular/cli": "~1.7.3",
@@ -48,6 +52,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "^4.0.1",
+    "enhanced-resolve": "^4.1.0",
     "font-awesome": "^4.7.0",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
