@@ -1,4 +1,12 @@
-# PhotoProject
+# Event Planning NW
+
+Features:
+
+- Bootstrap 4
+- API with authorized CRUD operations
+- NoSQL database
+- Authentication and access management with automatic JWT renewal (using OAuth)
+- Simple and complex forms with custom validation
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
