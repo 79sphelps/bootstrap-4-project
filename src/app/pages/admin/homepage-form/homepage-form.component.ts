@@ -1,4 +1,3 @@
-// src/app/pages/admin/event-form/event-form.component.ts
 import { Component, OnInit, OnDestroy, Input } from "@angular/core";
 import {
   FormGroup,
@@ -10,17 +9,7 @@ import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { ApiService } from "../../../core/api.service";
 import { Homepage } from "../../../core/models/homepage.model";
-// import { DatePipe } from "@angular/common";
-// import { dateValidator } from "./../../../core/forms/date.validator";
-/*
-import {
-  DATE_REGEX,
-  TIME_REGEX,
-  stringsToDate
-} from "./../../../core/forms/formUtils.factory";
-*/
 import { HomepageFormService } from "./homepage-form.service";
-import { SubmittingComponent } from "../../../core/forms/submitting.component";
 
 @Component({
   selector: "app-homepage-form",
@@ -29,13 +18,14 @@ import { SubmittingComponent } from "../../../core/forms/submitting.component";
   providers: [HomepageFormService]
 })
 export class HomepageFormComponent implements OnInit, OnDestroy {
-  @Input() homepage: Homepage;
+  @Input()
+  homepage: Homepage;
   isEdit: boolean;
+
   // FormBuilder form
   homepageForm: FormGroup;
-  //datesGroup: AbstractControl;
+
   // Model storing initial form values
-  //formEvent: FormEventModel;
   formHomepage: Homepage;
 
   // Form validation and disabled logic
@@ -84,13 +74,6 @@ export class HomepageFormComponent implements OnInit, OnDestroy {
         null
       );
     } else {
-      // If editing existing event, create new
-      // FormEventModel from existing data
-      // Transform datetimes:
-      // https://angular.io/api/common/DatePipe
-      // _shortDate: 1/7/2017
-      // 'shortTime': 12:05 PM
-      //const _shortDate = "M/d/yyyy";
       return new Homepage(
         this.homepage._id,
         this.homepage.welcomeMsg,
@@ -147,8 +130,6 @@ export class HomepageFormComponent implements OnInit, OnDestroy {
       ],
       editable: [this.formHomepage.editable, [Validators.required]]
     });
-    // Set local property to eventForm datesGroup control
-    //this.datesGroup = this.eventForm.get("datesGroup");
 
     // Subscribe to form value changes
     this.formChangeSub = this.homepageForm.valueChanges.subscribe(data =>
@@ -167,7 +148,6 @@ export class HomepageFormComponent implements OnInit, OnDestroy {
         }
       };
       _markDirty(this.homepageForm);
-      //_markDirty(this.datesGroup);
     }
 
     this._onValueChanged();

@@ -6,7 +6,6 @@ import { UtilsService } from "./../../../core/utils.service";
 import { FilterSortService } from "./../../../core/filter-sort.service";
 import { Subscription } from "rxjs";
 import { Personel } from "./../../../core/models/personel.model";
-
 import { expandCollapse } from "./../../../core/expand-collapse.animation";
 
 @Component({
@@ -40,7 +39,7 @@ export class PersonelComponent implements OnInit, OnDestroy {
   private _getPersonelList() {
     this.loading = true;
 
-    // Get all (admin) events
+    // Get all (admin) personel
     this.personelSub = this.api.getPersonel$().subscribe(
       res => {
         this.personelList = res;

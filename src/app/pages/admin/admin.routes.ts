@@ -2,7 +2,6 @@ import { Routes } from "@angular/router";
 import { AdminComponent } from "./admin.component";
 //import { CreateEventComponent } from "./create-event/create-event.component";
 //import { UpdateEventComponent } from "./update-event/update-event.component";
-
 //import { EventComponent } from "./pages/event/event.component";
 
 /*

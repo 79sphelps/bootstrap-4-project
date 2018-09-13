@@ -1,4 +1,3 @@
-// src/app/pages/home/home.component.ts
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ApiService } from "./../../core/api.service";
@@ -6,7 +5,6 @@ import { UtilsService } from "./../../core/utils.service";
 import { FilterSortService } from "./../../core/filter-sort.service";
 import { Subscription } from "rxjs/Subscription";
 import { EventModel } from "./../../core/models/event.model";
-
 import { expandCollapse } from "./../../core/expand-collapse.animation";
 
 @Component({
@@ -54,7 +52,8 @@ export class CustomServicesComponent implements OnInit, OnDestroy {
   }
 
   searchEvents() {
-    // this.filteredEvents = this.fs.search(this.eventList, this.query, '_id', 'mediumDate');
+    // this.filteredEvents =
+    //   this.fs.search(this.eventList, this.query, '_id', 'mediumDate');
     console.log(this.query);
     this.filteredEvents = this.fs.search(this.eventList, this.query, "_id");
     console.log(this.filteredEvents);

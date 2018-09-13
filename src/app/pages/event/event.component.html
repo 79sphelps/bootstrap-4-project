@@ -2,8 +2,6 @@
 
 <div class="container">
   <div class="row" style="margin-left: 0px; margin-right: 0px;">
-
-
     <app-loading *ngIf="loading"></app-loading>
 
     <ng-template [ngIf]="utils.isLoaded(loading)">
@@ -12,10 +10,10 @@
       <ng-template [ngIf]="event">
         <!-- Event is over -->
         <!--
-    <p *ngIf="eventPast" class="alert alert-danger">
-      <strong>This event is over.</strong>
-    </p>
-    -->
+        <p *ngIf="eventPast" class="alert alert-danger">
+          <strong>This event is over.</strong>
+        </p>
+        -->
 
         <div class="card">
           <!-- Event tab navigation -->
@@ -37,8 +35,8 @@
 
           <!-- Event RSVP tab -->
           <!--
-      <app-rsvp *ngIf="utils.tabIs(tab, 'rsvp')"></app-rsvp>
-      -->
+          <app-rsvp *ngIf="utils.tabIs(tab, 'rsvp')"></app-rsvp>
+          -->
         </div>
       </ng-template>
 

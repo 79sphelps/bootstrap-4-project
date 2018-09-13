@@ -1,4 +1,3 @@
-// src/app/pages/event/event.component.ts
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { AuthService } from "./../../../auth/auth.service";
@@ -44,7 +43,7 @@ export class ImageComponent implements OnInit, OnDestroy {
   }
 
   private _routeSubs() {
-    // Set event ID from route params and subscribe
+    // Set image ID from route params and subscribe
     this.routeSub = this.route.params.subscribe(params => {
       this.id = params["id"];
       this._getImage();
@@ -58,13 +57,12 @@ export class ImageComponent implements OnInit, OnDestroy {
 
   private _getImage() {
     this.loading = true;
-    // GET event by ID
+    // GET image by ID
     this.imageSub = this.api.getImageById$(this.id).subscribe(
       res => {
         this.image = res;
         this._setPageTitle(this.image.caption);
         this.loading = false;
-        // this.eventPast = this.utils.eventPast(this.event.endDatetime);
       },
       err => {
         console.error(err);

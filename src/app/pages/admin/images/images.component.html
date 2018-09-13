@@ -1,10 +1,5 @@
-<!-- src/app/pages/admin/admin.component.html -->
-
 <div class="container">
   <div class="row" style="margin-left: 0px; margin-right: 0px;">
-
-
-
     <h1 class="text-center">{{ pageTitle }}</h1>
     <app-loading *ngIf="loading"></app-loading>
 
@@ -19,10 +14,10 @@
         <a class="btn btn-success btn-block" routerLink="/admin/images/new">+ Create New Image</a>
       </p>
 
-      <!-- Events -->
+      <!-- Images -->
       <ng-template [ngIf]="imageList">
         <ng-template [ngIf]="imageList.length">
-          <!-- Search events -->
+          <!-- Search images -->
           <!--
           <label class="sr-only" for="search">Search</label>
           <div class="search input-group mb-3">
@@ -51,10 +46,9 @@
             <em class="text-danger">{{ query }}</em>, sorry!
           </p>
 
-          <!-- Events listing -->
+          <!-- Images listing -->
           <section class="list-group" [@expandCollapse]>
             <div *ngFor="let image of fs.search(filteredImages)" class=" list-group-item list-group-item-action flex-column align-items-start ">
-
               <div style="display: inline">
                 <span class="thumbnails" data-toggle="lightbox">
                   <img [src]="image.path" alt="" class="thumbnail" align="right" width="100" [attr.data-target]="image.path" />
@@ -71,9 +65,6 @@
                   <a class="btn btn-danger btn-sm" [routerLink]="['/admin/images/update', image._id]" [queryParams]="{tab: 'delete'}">Delete</a>
                 </p>
               </div>
-
-
-
             </div>
           </section>
         </ng-template>
@@ -90,7 +81,5 @@
       </p>
 
     </ng-template>
-
-
   </div>
 </div>

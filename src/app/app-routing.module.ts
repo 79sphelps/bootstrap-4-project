@@ -138,7 +138,3 @@ const routes: Routes = [
   providers: [AuthGuard, AdminGuard]
 })
 export class AppRoutingModule {}
-
-/*
-
-*/

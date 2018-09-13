@@ -24,6 +24,10 @@ export class ApiService {
     return `Bearer ${localStorage.getItem("access_token")}`;
   }
 
+  // ================================================================
+  // Events
+  // ================================================================
+
   // GET list of public, future events
   getEvents$(): Observable<EventModel[]> {
     return this.http
@@ -130,7 +134,10 @@ export class ApiService {
       .pipe(catchError(error => this._handleError(error)));
   }
 
-  // ---------------------------------------------------------------------
+  // ================================================================
+  // Testimonials
+  // ================================================================
+
   // GET list of public testimonials
   getTestimonials$(): Observable<Testimonial[]> {
     return this.http
@@ -138,7 +145,10 @@ export class ApiService {
       .pipe(catchError(error => this._handleError(error)));
   }
 
-  // ---------------------------------------------------------------------
+  // ================================================================
+  // Images
+  // ================================================================
+
   // GET list of public images
   getImages$(): Observable<Image[]> {
     return this.http
@@ -146,7 +156,7 @@ export class ApiService {
       .pipe(catchError(error => this._handleError(error)));
   }
 
-  // GET an event by ID (login required)
+  // GET an image by ID (login required)
   getImageById$(id: string): Observable<Image> {
     return this.http
       .get(`${ENV.BASE_API}admin/images/${id}`, {
@@ -155,7 +165,7 @@ export class ApiService {
       .pipe(catchError(error => this._handleError(error)));
   }
 
-  // POST new event (admin only)
+  // POST new image (admin only)
   postImage$(image: Image): Observable<Image> {
     delete image._id;
 
@@ -166,7 +176,7 @@ export class ApiService {
       .pipe(catchError(error => this._handleError(error)));
   }
 
-  // PUT existing event (admin only)
+  // PUT existing image (admin only)
   editImage$(id: string, image: Image): Observable<Image> {
     return this.http
       .put(`${ENV.BASE_API}admin/images/${id}`, image, {
@@ -175,7 +185,7 @@ export class ApiService {
       .pipe(catchError(error => this._handleError(error)));
   }
 
-  // DELETE existing event and all associated RSVPs (admin only)
+  // DELETE existing image and all associated RSVPs (admin only)
   deleteImage$(id: string): Observable<any> {
     return this.http
       .delete(`${ENV.BASE_API}admin/images/${id}`, {
@@ -184,7 +194,10 @@ export class ApiService {
       .pipe(catchError(error => this._handleError(error)));
   }
 
-  // ---------------------------------------------------------------------
+  // ================================================================
+  // Personel
+  // ================================================================
+
   // GET list of personel
   getPersonel$(): Observable<Personel[]> {
     return this.http
@@ -192,7 +205,7 @@ export class ApiService {
       .pipe(catchError(error => this._handleError(error)));
   }
 
-  // GET an event by ID (login required)
+  // GET an person by ID (login required)
   getPersonelById$(id: string): Observable<Personel> {
     return this.http
       .get(`${ENV.BASE_API}admin/personel/${id}`, {
@@ -201,7 +214,7 @@ export class ApiService {
       .pipe(catchError(error => this._handleError(error)));
   }
 
-  // POST new event (admin only)
+  // POST new person (admin only)
   postPersonel$(personel: Personel): Observable<Personel> {
     delete personel._id;
 
@@ -212,7 +225,7 @@ export class ApiService {
       .pipe(catchError(error => this._handleError(error)));
   }
 
-  // PUT existing event (admin only)
+  // PUT existing person (admin only)
   editPersonel$(id: string, personel: Personel): Observable<Personel> {
     return this.http
       .put(`${ENV.BASE_API}admin/personel/${id}`, personel, {
@@ -221,7 +234,7 @@ export class ApiService {
       .pipe(catchError(error => this._handleError(error)));
   }
 
-  // DELETE existing event and all associated RSVPs (admin only)
+  // DELETE existing person and all associated RSVPs (admin only)
   deletePersonel$(id: string): Observable<any> {
     return this.http
       .delete(`${ENV.BASE_API}admin/personel/${id}`, {
@@ -230,7 +243,10 @@ export class ApiService {
       .pipe(catchError(error => this._handleError(error)));
   }
 
-  // ---------------------------------------------------------------------
+  // ================================================================
+  // Homepage
+  // ================================================================
+
   // GET list of public homepage details
   getHomepageDetails$(): Observable<Homepage> {
     return this.http
@@ -238,7 +254,7 @@ export class ApiService {
       .pipe(catchError(error => this._handleError(error)));
   }
 
-  // GET an event by ID (login required)
+  // GET an homepage detail by ID (login required)
   getHomepageDetailsById$(id: string): Observable<Homepage> {
     return this.http
       .get(`${ENV.BASE_API}homepage/${id}`, {

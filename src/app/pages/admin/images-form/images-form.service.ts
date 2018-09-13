@@ -1,6 +1,5 @@
-// src/app/pages/admin/event-form/event-form.service.ts
 import { Injectable } from "@angular/core";
-import { SubmittingComponent } from "../../../core/forms/submitting.component";
+// import { SubmittingComponent } from "../../../core/forms/submitting.component";
 
 @Injectable()
 export class ImagesFormService {

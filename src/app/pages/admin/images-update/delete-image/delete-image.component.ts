@@ -1,4 +1,3 @@
-// src/app/pages/admin/update-event/delete-event/delete-event.component.ts
 import { Component, OnDestroy, Input } from "@angular/core";
 import { Image } from "./../../../../core/models/images.model";
 import { Subscription } from "rxjs";
@@ -11,7 +10,8 @@ import { Router } from "@angular/router";
   styleUrls: ["./delete-image.component.scss"]
 })
 export class DeleteImageComponent implements OnDestroy {
-  @Input() image: Image;
+  @Input()
+  image: Image;
   confirmDelete: string;
   deleteSub: Subscription;
   submitting: boolean;

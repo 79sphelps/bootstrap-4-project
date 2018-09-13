@@ -43,7 +43,7 @@ export class PersonComponent implements OnInit, OnDestroy {
   }
 
   private _routeSubs() {
-    // Set event ID from route params and subscribe
+    // Set person ID from route params and subscribe
     this.routeSub = this.route.params.subscribe(params => {
       this.id = params["id"];
       this._getPerson();
@@ -57,13 +57,12 @@ export class PersonComponent implements OnInit, OnDestroy {
 
   private _getPerson() {
     this.loading = true;
-    // GET event by ID
+    // GET person by ID
     this.personelSub = this.api.getPersonelById$(this.id).subscribe(
       res => {
         this.person = res;
         this._setPageTitle(this.person.name);
         this.loading = false;
-        // this.eventPast = this.utils.eventPast(this.event.endDatetime);
       },
       err => {
         console.error(err);

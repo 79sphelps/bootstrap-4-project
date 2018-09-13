@@ -1,4 +1,5 @@
-// server.js
+"use strict";
+
 /*
  |--------------------------------------
  | Dependencies
@@ -16,27 +17,27 @@ const cors = require("cors");
 // Config
 const config = require("./server/config");
 
-// server.js
 /*
  |--------------------------------------
  | Dependencies
  |--------------------------------------
  */
 
-console.log(config.MONGO_URI);
-mongoose.connect(config.MONGO_URI);
+mongoose.connect(
+  config.MONGO_URI,
+  { useNewUrlParser: true }
+);
 const monDb = mongoose.connection;
 
-monDb.on("error", function() {
+monDb.on("error", () => {
   console.log(
-    "MongoDB Connection Error. Please make sure that",
-    config.MONGO_URI,
-    "is running"
+    `MongoDB Connection Error. Please make sure that
+    ${config.MONGO_URI} is running`
   );
 });
 
-monDb.once("open", function callback() {
-  console.info("Connected to MongoDB:", config.MONGO_URI);
+monDb.once("open", () => {
+  console.info(`Connected to MongoDB: ${config.MONGO_URI}`);
 });
 
 /*

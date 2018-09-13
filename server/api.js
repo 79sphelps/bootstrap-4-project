@@ -1,4 +1,5 @@
-// server/api.js
+"use strict";
+
 /*
  |--------------------------------------
  | Dependencies
@@ -9,9 +10,9 @@ const jwt = require("express-jwt");
 const jwks = require("jwks-rsa");
 
 const Event = require("./models/Event");
-const Homepage2 = require("./models/Homepage2");
+const Homepage = require("./models/Homepage");
 const Images = require("./models/Images");
-const Personel2 = require("./models/Personel2");
+const Personel = require("./models/Personel");
 const Request = require("./models/Request");
 const Testimonials = require("./models/Testimonials");
 
@@ -20,14 +21,14 @@ const Testimonials = require("./models/Testimonials");
  | Authentication Middleware
  |--------------------------------------
  */
-// jwksRequestsPerMinute: 5,
+
 module.exports = function(app, config) {
   // Authentication middleware
   const jwtCheck = jwt({
     secret: jwks.expressJwtSecret({
       cache: true,
       rateLimit: true,
-      jwksRequestsPerMinute: 5, // was 5
+      jwksRequestsPerMinute: 5,
       jwksUri: `https://${config.AUTH0_DOMAIN}/.well-known/jwks.json`
     }),
     audience: config.AUTH0_API_AUDIENCE,
@@ -41,13 +42,17 @@ module.exports = function(app, config) {
     if (roles.indexOf("admin") > -1) {
       next();
     } else {
-      res.status(401).send({ message: "Not authorized for admin access" });
+      res.status(401).send({
+        message: "Not authorized for admin access"
+      });
     }
   };
 
-  //|--------------------------------------
-  //| API Routes
-  //|--------------------------------------
+  /*
+   |--------------------------------------
+   | API Routes
+   |--------------------------------------
+   */
 
   /*
     const eventsRouter = require('./router/events.router');
@@ -69,14 +74,20 @@ module.exports = function(app, config) {
     res.send("API Works");
   });
 
+  // ================================================================
+  // Events
+  // ================================================================
   const _eventProjection =
-    "title location groupSize eventType price purpose description viewPublic editable thumbnail";
+    "title location groupSize eventType price purpose description " +
+    "viewPublic editable thumbnail";
 
   app.get("/apii/events", (req, res) => {
     Event.find({}, _eventProjection, (err, events) => {
       let eventsArr = [];
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (events) {
         events.forEach(event => {
@@ -91,7 +102,9 @@ module.exports = function(app, config) {
     Event.find({}, _eventProjection, (err, events) => {
       let eventsArr = [];
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (events) {
         events.forEach(event => {
@@ -105,10 +118,14 @@ module.exports = function(app, config) {
   app.get("/apii/event/:id", jwtCheck, (req, res) => {
     Event.findById(req.params.id, (err, event) => {
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (!event) {
-        return res.status(400).send({ message: "Event not found." });
+        return res.status(400).send({
+          message: "Event not found."
+        });
       }
       res.send(event);
     });
@@ -116,15 +133,20 @@ module.exports = function(app, config) {
 
   app.post("/apii/event/new", jwtCheck, adminCheck, (req, res) => {
     Event.findOne(
-      { title: req.body.title, location: req.body.location },
+      {
+        title: req.body.title,
+        location: req.body.location
+      },
       (err, existingEvent) => {
         if (err) {
-          return res.status(500).send({ message: err.message });
+          return res.status(500).send({
+            message: err.message
+          });
         }
         if (existingEvent) {
-          return res
-            .status(409)
-            .send({ message: "You already have this event." });
+          return res.status(409).send({
+            message: "You already have this event."
+          });
         }
 
         const event = new Event({
@@ -142,7 +164,9 @@ module.exports = function(app, config) {
 
         event.save(err => {
           if (err) {
-            return res.status(500).send({ message: err.message });
+            return res.status(500).send({
+              message: err.message
+            });
           }
           res.send(event);
         });
@@ -153,10 +177,14 @@ module.exports = function(app, config) {
   app.put("/apii/event/:id", jwtCheck, adminCheck, (req, res) => {
     Event.findById(req.params.id, (err, event) => {
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (!event) {
-        return res.status(400).send({ message: "Event not found." });
+        return res.status(400).send({
+          message: "Event not found."
+        });
       }
 
       event.title = req.body.title;
@@ -172,7 +200,9 @@ module.exports = function(app, config) {
 
       event.save(err => {
         if (err) {
-          return res.status(500).send({ message: err.message });
+          return res.status(500).send({
+            message: err.message
+          });
         }
         res.send(event);
       });
@@ -182,37 +212,54 @@ module.exports = function(app, config) {
   app.delete("/apii/event/:id", jwtCheck, adminCheck, (req, res) => {
     Event.findById(req.params.id, (err, event) => {
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (!event) {
-        return res.status(400).send({ message: "Event not found." });
+        return res.status(400).send({
+          message: "Event not found."
+        });
       }
-      Event.find({ _id: req.params.id }, (err, events) => {
-        /*
+      Event.find(
+        {
+          _id: req.params.id
+        },
+        (err, events) => {
+          /*
         if (events) {
           events.forEach(event => {
             event.remove();
           });
         }
         */
-        event.remove(err => {
-          if (err) {
-            return res.status(500).send({ message: err.message });
-          }
-          res.status(200).send({ message: "Event successfully deleted." });
-        });
-      });
+          event.remove(err => {
+            if (err) {
+              return res.status(500).send({
+                message: err.message
+              });
+            }
+            res.status(200).send({
+              message: "Event successfully deleted."
+            });
+          });
+        }
+      );
     });
   });
 
-  // ----------------------------------------------------------------------
+  // ================================================================
+  // Testimonials
+  // ================================================================
   const _testimonialProjection = "name quote editable";
 
   app.get("/apii/testimonials", (req, res) => {
     Testimonials.find({}, _testimonialProjection, (err, testimonials) => {
       let testimonialsArr = [];
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (testimonials) {
         testimonials.forEach(testimony => {
@@ -224,14 +271,18 @@ module.exports = function(app, config) {
     });
   });
 
-  // ----------------------------------------------------------------------
+  // ================================================================
+  // Images
+  // ================================================================
   const _imagesProjection = "caption path description editable";
 
   app.get("/apii/admin/images", (req, res) => {
     Images.find({}, _imagesProjection, (err, images) => {
       let imagesArr = [];
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (images) {
         images.forEach(img => {
@@ -246,10 +297,14 @@ module.exports = function(app, config) {
   app.get("/apii/admin/images/:id", jwtCheck, (req, res) => {
     Images.findById(req.params.id, (err, image) => {
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (!image) {
-        return res.status(400).send({ message: "image not found." });
+        return res.status(400).send({
+          message: "image not found."
+        });
       }
       res.send(image);
     });
@@ -257,15 +312,20 @@ module.exports = function(app, config) {
 
   app.post("/apii/admin/images/new", jwtCheck, adminCheck, (req, res) => {
     Images.findOne(
-      { path: req.body.path, caption: req.body.caption },
+      {
+        path: req.body.path,
+        caption: req.body.caption
+      },
       (err, existingImage) => {
         if (err) {
-          return res.status(500).send({ message: err.message });
+          return res.status(500).send({
+            message: err.message
+          });
         }
         if (existingImage) {
-          return res
-            .status(409)
-            .send({ message: "You already have this image." });
+          return res.status(409).send({
+            message: "You already have this image."
+          });
         }
 
         const image = new Images({
@@ -277,7 +337,9 @@ module.exports = function(app, config) {
 
         image.save(err => {
           if (err) {
-            return res.status(500).send({ message: err.message });
+            return res.status(500).send({
+              message: err.message
+            });
           }
           res.send(image);
         });
@@ -288,10 +350,14 @@ module.exports = function(app, config) {
   app.put("/apii/admin/images/:id", jwtCheck, adminCheck, (req, res) => {
     Images.findById(req.params.id, (err, image) => {
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (!image) {
-        return res.status(400).send({ message: "Image not found." });
+        return res.status(400).send({
+          message: "Image not found."
+        });
       }
 
       image._id = req.body._id;
@@ -302,7 +368,9 @@ module.exports = function(app, config) {
 
       image.save(err => {
         if (err) {
-          return res.status(500).send({ message: err.message });
+          return res.status(500).send({
+            message: err.message
+          });
         }
         res.send(image);
       });
@@ -312,39 +380,50 @@ module.exports = function(app, config) {
   app.delete("/apii/admin/images/:id", jwtCheck, adminCheck, (req, res) => {
     Images.findById(req.params.id, (err, image) => {
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (!image) {
-        return res.status(400).send({ message: "Image not found." });
+        return res.status(400).send({
+          message: "Image not found."
+        });
       }
-      Images.find({ _id: req.params.id }, (err, images) => {
-        /*
-        if (images) {
-          events.forEach(event => {
-            event.remove();
+      Images.find(
+        {
+          _id: req.params.id
+        },
+        (err, images) => {
+          image.remove(err => {
+            if (err) {
+              return res.status(500).send({
+                message: err.message
+              });
+            }
+            res.status(200).send({
+              message: "Image successfully deleted."
+            });
           });
         }
-        */
-        image.remove(err => {
-          if (err) {
-            return res.status(500).send({ message: err.message });
-          }
-          res.status(200).send({ message: "Image successfully deleted." });
-        });
-      });
+      );
     });
   });
 
-  // ----------------------------------------------------------------------
+  // ================================================================
+  // Homepage
+  // ================================================================
   const _homepageProjection =
-    "welcomeMsg aboutMsg aboutQuote personHighlight personHighlightQuote personHighlightBio personHighlightThumbnail personHighlightThumbnailCaption editable";
-  //const _homepageProjection = 'aboutQuote';
+    "welcomeMsg aboutMsg aboutQuote personHighlight personHighlightQuote" +
+    " personHighlightBio personHighlightThumbnail" +
+    " personHighlightThumbnailCaption editable";
 
   app.get("/apii/homepage", function(req, res, next) {
-    Homepage2.find({}, _homepageProjection, (err, homepageDetails) => {
+    Homepage.find({}, _homepageProjection, (err, homepageDetails) => {
       let homepageArr = [];
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
 
       if (homepageDetails) {
@@ -358,24 +437,32 @@ module.exports = function(app, config) {
   });
 
   app.get("/apii/homepage/:id", jwtCheck, (req, res) => {
-    Homepage2.findById(req.params.id, (err, homepage) => {
+    Homepage.findById(req.params.id, (err, homepage) => {
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (!homepage) {
-        return res.status(400).send({ message: "Homepage not found." });
+        return res.status(400).send({
+          message: "Homepage not found."
+        });
       }
       res.send(homepage);
     });
   });
 
   app.put("/apii/homepage/:id", jwtCheck, adminCheck, (req, res) => {
-    Homepage2.findById(req.params.id, (err, homepage) => {
+    Homepage.findById(req.params.id, (err, homepage) => {
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (!homepage) {
-        return res.status(400).send({ message: "Homepage not found." });
+        return res.status(400).send({
+          message: "Homepage not found."
+        });
       }
 
       homepage.welcomeMsg = req.body.welcomeMsg;
@@ -391,21 +478,27 @@ module.exports = function(app, config) {
 
       homepage.save(err => {
         if (err) {
-          return res.status(500).send({ message: err.message });
+          return res.status(500).send({
+            message: err.message
+          });
         }
         res.send(homepage);
       });
     });
   });
 
-  // ----------------------------------------------------------------------
+  // ================================================================
+  // Personel
+  // ================================================================
   const _personelProjection = "name role editable";
 
   app.get("/apii/personel", (req, res) => {
-    Personel2.find({}, _personelProjection, (err, personel) => {
+    Personel.find({}, _personelProjection, (err, personel) => {
       let personArr = [];
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       //res.set('Content-Type', 'text/html');
 
@@ -420,10 +513,12 @@ module.exports = function(app, config) {
   });
 
   app.get("/apii/admin/personel", (req, res) => {
-    Personel2.find({}, _personelProjection, (err, personel) => {
+    Personel.find({}, _personelProjection, (err, personel) => {
       let personelArr = [];
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (personel) {
         personel.forEach(img => {
@@ -436,31 +531,40 @@ module.exports = function(app, config) {
   });
 
   app.get("/apii/admin/personel/:id", jwtCheck, (req, res) => {
-    Personel2.findById(req.params.id, (err, personel) => {
+    Personel.findById(req.params.id, (err, personel) => {
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (!personel) {
-        return res.status(400).send({ message: "personel not found." });
+        return res.status(400).send({
+          message: "personel not found."
+        });
       }
       res.send(personel);
     });
   });
 
   app.post("/apii/admin/personel/new", jwtCheck, adminCheck, (req, res) => {
-    Personel2.findOne(
-      { name: req.body.name, role: req.body.role },
+    Personel.findOne(
+      {
+        name: req.body.name,
+        role: req.body.role
+      },
       (err, existingPersonel) => {
         if (err) {
-          return res.status(500).send({ message: err.message });
+          return res.status(500).send({
+            message: err.message
+          });
         }
         if (existingPersonel) {
-          return res
-            .status(409)
-            .send({ message: "You already have this personel." });
+          return res.status(409).send({
+            message: "You already have this personel."
+          });
         }
 
-        const personel = new Personel2({
+        const personel = new Personel({
           name: req.body.name,
           role: req.body.role,
           editable: req.body.editable
@@ -468,7 +572,9 @@ module.exports = function(app, config) {
 
         personel.save(err => {
           if (err) {
-            return res.status(500).send({ message: err.message });
+            return res.status(500).send({
+              message: err.message
+            });
           }
           res.send(personel);
         });
@@ -477,12 +583,16 @@ module.exports = function(app, config) {
   });
 
   app.put("/apii/admin/personel/:id", jwtCheck, adminCheck, (req, res) => {
-    Personel2.findById(req.params.id, (err, personel) => {
+    Personel.findById(req.params.id, (err, personel) => {
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (!personel) {
-        return res.status(400).send({ message: "Personel not found." });
+        return res.status(400).send({
+          message: "Personel not found."
+        });
       }
 
       personel._id = req.body._id;
@@ -492,7 +602,9 @@ module.exports = function(app, config) {
 
       personel.save(err => {
         if (err) {
-          return res.status(500).send({ message: err.message });
+          return res.status(500).send({
+            message: err.message
+          });
         }
         res.send(personel);
       });
@@ -500,35 +612,50 @@ module.exports = function(app, config) {
   });
 
   app.delete("/apii/admin/personel/:id", jwtCheck, adminCheck, (req, res) => {
-    Personel2.findById(req.params.id, (err, personel) => {
+    Personel.findById(req.params.id, (err, personel) => {
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
       if (!personel) {
-        return res.status(400).send({ message: "Personel not found." });
-      }
-      Personel2.find({ _id: req.params.id }, (err, person) => {
-        personel.remove(err => {
-          if (err) {
-            return res.status(500).send({ message: err.message });
-          }
-          res.status(200).send({ message: "Personel successfully deleted." });
+        return res.status(400).send({
+          message: "Personel not found."
         });
-      });
+      }
+      Personel.find(
+        {
+          _id: req.params.id
+        },
+        (err, person) => {
+          personel.remove(err => {
+            if (err) {
+              return res.status(500).send({
+                message: err.message
+              });
+            }
+            res.status(200).send({
+              message: "Personel successfully deleted."
+            });
+          });
+        }
+      );
     });
   });
 
-  // ----------------------------------------------------------------------
+  // ================================================================
+  // Requests
+  // ================================================================
   const _requestProjection = "name email message editable";
 
   app.get("/apii/requests", (req, res) => {
     Request.find({}, _requestProjection, (err, images) => {
       let imagesArr = [];
       if (err) {
-        return res.status(500).send({ message: err.message });
+        return res.status(500).send({
+          message: err.message
+        });
       }
-
-      console.log(images);
 
       if (images) {
         images.forEach(img => {

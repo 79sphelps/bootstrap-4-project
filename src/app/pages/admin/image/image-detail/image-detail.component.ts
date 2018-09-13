@@ -1,4 +1,3 @@
-// src/app/pages/event/event-detail/event-detail.component.ts
 import { Component, Input } from "@angular/core";
 import { AuthService } from "./../../../../auth/auth.service";
 import { UtilsService } from "./../../../../core/utils.service";
@@ -10,7 +9,8 @@ import { Image } from "./../../../../core/models/images.model";
   styleUrls: ["./image-detail.component.scss"]
 })
 export class ImageDetailComponent {
-  @Input() image: Image;
+  @Input()
+  image: Image;
 
   constructor(public utils: UtilsService, public auth: AuthService) {}
 }

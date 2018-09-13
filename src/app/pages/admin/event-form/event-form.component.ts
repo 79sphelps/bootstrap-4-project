@@ -12,6 +12,7 @@ import { ApiService } from "./../../../core/api.service";
 import { EventModel } from "./../../../core/models/event.model";
 // import { DatePipe } from "@angular/common";
 // import { dateValidator } from "./../../../core/forms/date.validator";
+
 /*
 import {
   DATE_REGEX,
@@ -20,7 +21,7 @@ import {
 } from "./../../../core/forms/formUtils.factory";
 */
 import { EventFormService } from "./event-form.service";
-import { SubmittingComponent } from "../../../core/forms/submitting.component";
+// import { SubmittingComponent } from "../../../core/forms/submitting.component";
 
 @Component({
   selector: "app-event-form",
@@ -29,13 +30,16 @@ import { SubmittingComponent } from "../../../core/forms/submitting.component";
   providers: [EventFormService]
 })
 export class EventFormComponent implements OnInit, OnDestroy {
-  @Input() event: EventModel;
+  @Input()
+  event: EventModel;
   isEdit: boolean;
+
   // FormBuilder form
   eventForm: FormGroup;
-  //datesGroup: AbstractControl;
+  // datesGroup: AbstractControl;
+
   // Model storing initial form values
-  //formEvent: FormEventModel;
+  // formEvent: FormEventModel;
   formEvent: EventModel;
 
   // Form validation and disabled logic
@@ -161,7 +165,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
       ]
     });
     // Set local property to eventForm datesGroup control
-    //this.datesGroup = this.eventForm.get("datesGroup");
+    // this.datesGroup = this.eventForm.get("datesGroup");
 
     // Subscribe to form value changes
     this.formChangeSub = this.eventForm.valueChanges.subscribe(data =>
@@ -180,7 +184,7 @@ export class EventFormComponent implements OnInit, OnDestroy {
         }
       };
       _markDirty(this.eventForm);
-      //_markDirty(this.datesGroup);
+      // _markDirty(this.datesGroup);
     }
 
     this._onValueChanged();

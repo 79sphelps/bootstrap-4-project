@@ -19,10 +19,13 @@ import { SubmittingComponent } from "../../../core/forms/submitting.component";
   providers: [PersonelFormService]
 })
 export class PersonelFormComponent implements OnInit, OnDestroy {
-  @Input() person: Personel;
+  @Input()
+  person: Personel;
   isEdit: boolean;
+
   // FormBuilder form
   personelForm: FormGroup;
+
   // Model storing initial form values
   formPersonel: Personel;
 
@@ -56,8 +59,6 @@ export class PersonelFormComponent implements OnInit, OnDestroy {
 
   private _setFormPersonel() {
     if (!this.isEdit) {
-      // If creating a new event, create new
-      // FormEventModel with default null data
       return new Personel(null, null, null, null);
     } else {
       return new Personel(
@@ -96,8 +97,8 @@ export class PersonelFormComponent implements OnInit, OnDestroy {
     );
 
     // If edit: mark fields dirty to trigger immediate
-    // validation in case editing an event that is no
-    // longer valid (for example, an event in the past)
+    // validation in case editing an person that is no
+    // longer valid
     if (this.isEdit) {
       const _markDirty = group => {
         for (const i in group.controls) {
@@ -134,7 +135,6 @@ export class PersonelFormComponent implements OnInit, OnDestroy {
     // Check validation and set errors
     for (const field in this.formErrors) {
       if (this.formErrors.hasOwnProperty(field)) {
-        // Set errors for fields not inside datesGroup
         // Clear previous error message (if any)
         this.formErrors[field] = "";
         _setErrMsgs(this.personelForm.get(field), this.formErrors, field);
@@ -143,10 +143,6 @@ export class PersonelFormComponent implements OnInit, OnDestroy {
   }
 
   private _getSubmitObj() {
-    // Convert form startDate/startTime and endDate/endTime
-    // to JS dates and populate a new EventModel for submission
-
-    // this.personelForm ? this.person._id : null,
     return new Personel(
       "",
       this.personelForm.get("name").value,
@@ -179,7 +175,7 @@ export class PersonelFormComponent implements OnInit, OnDestroy {
   private _handleSubmitSuccess(res) {
     this.error = false;
     this.submitting = false;
-    // Redirect to event detail
+    // Redirect to person detail
     this.router.navigate(["/admin/personel", res._id]);
   }
 

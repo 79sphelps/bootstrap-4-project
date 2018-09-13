@@ -12,12 +12,9 @@ import { Homepage } from "../core/models/homepage.model";
 })
 export class AboutComponent implements OnInit, OnDestroy {
   my_image: string;
-
   pageTitle = "About";
-
   homepageSub: Subscription;
   homepage: Homepage;
-
   loading: boolean;
   error: boolean;
   query = "";
@@ -37,7 +34,7 @@ export class AboutComponent implements OnInit, OnDestroy {
 
   private _getHomepageDetails() {
     this.loading = true;
-    // Get future, public events
+
     this.homepageSub = this.api.getHomepageDetails$().subscribe(
       res => {
         this.homepage = res;

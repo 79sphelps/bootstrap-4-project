@@ -33,3 +33,4 @@
     Carousel.prototype.zoom
   );
 })(jQuery);
+

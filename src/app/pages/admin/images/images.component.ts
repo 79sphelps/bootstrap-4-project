@@ -1,4 +1,3 @@
-// src/app/pages/admin/admin.component.ts
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { AuthService } from "./../../../auth/auth.service";

@@ -39,7 +39,8 @@ export class FilterSortService {
             const thisVal = item[key];
             if (
               // Value is a string and NOT a UTC date
-              // typeof thisVal === 'string' && !thisVal.match(isoDateRegex) && thisVal.toLowerCase().indexOf(lQuery) !== -1
+              // typeof thisVal === 'string' && !thisVal.match(isoDateRegex) &&
+              //   thisVal.toLowerCase().indexOf(lQuery) !== -1
               typeof thisVal === "string" &&
               thisVal.toLowerCase().indexOf(lQuery) !== -1
             ) {

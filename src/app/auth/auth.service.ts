@@ -9,7 +9,6 @@ import { Observable } from "rxjs/Observable";
 import { mergeMap } from "rxjs/operators";
 import "rxjs/add/observable/of";
 import "rxjs/add/observable/timer";
-
 //import { of, timer } from "rxjs";
 
 @Injectable()
@@ -107,6 +106,7 @@ export class AuthService {
     this._clearRedirect();
   }
   */
+
   private _redirect() {
     // Redirect with or without 'tab' query parameter
     // Note: does not support additional params besides 'tab'

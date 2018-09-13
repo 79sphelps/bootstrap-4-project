@@ -1,6 +1,5 @@
-<!-- src/app/pages/admin/event-form/event-form.component.html -->
 <form [formGroup]="personelForm" (ngSubmit)="onSubmit()">
-  <!-- Title -->
+  <!-- Name -->
   <div class="form-group">
     <label for="name">Name</label>
     <input id="name" type="text" class="form-control" formControlName="name" [maxlength]="ef.titleMax">
@@ -8,23 +7,13 @@
     </div>
   </div>
 
-  <!-- Location -->
+  <!-- Role -->
   <div class="form-group">
     <label for="role">Role</label>
     <input id="role" type="text" class="form-control" formControlName="role" [maxlength]="ef.locMax">
     <div *ngIf="formErrors.role" class="small text-danger formErrors" [innerHTML]="formErrors.role">
     </div>
   </div>
-
-  <!-- Description -->
-  <!--
-  <div class="form-group">
-    <label for="description">Description:</label>
-    <textarea id="description" class="form-control" rows="3" formControlName="description" [maxlength]="ef.descMax"></textarea>
-    <div *ngIf="formErrors.description" class="small text-danger formErrors" [innerHTML]="formErrors.description">
-    </div>
-  </div>
-  -->
 
   <!-- Editable -->
   <div class="form-group">

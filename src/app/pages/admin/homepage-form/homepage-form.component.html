@@ -1,4 +1,3 @@
-<!-- src/app/pages/admin/event-form/event-form.component.html -->
 <form [formGroup]="homepageForm" (ngSubmit)="onSubmit()">
   <!-- Welcome Msg -->
   <div class="form-group">
@@ -65,7 +64,6 @@
     </div>
   </div>
 
-
   <!-- Editable -->
   <div class="form-group">
     <label class="label-inline-group">Editable</label>
@@ -82,8 +80,6 @@
     <div *ngIf="formErrors.editable" class="small text-danger formErrors" [innerHTML]="formErrors.editable">
     </div>
   </div>
-
-
 
   <!-- Submit -->
   <div class="form-group">

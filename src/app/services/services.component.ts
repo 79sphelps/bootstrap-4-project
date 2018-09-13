@@ -1,4 +1,3 @@
-// src/app/pages/home/home.component.ts
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ApiService } from "./../core/api.service";

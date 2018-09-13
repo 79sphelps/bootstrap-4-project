@@ -10,7 +10,8 @@ import { Router } from "@angular/router";
   styleUrls: ["./delete-person.component.scss"]
 })
 export class DeletePersonComponent implements OnDestroy {
-  @Input() person: Personel;
+  @Input()
+  person: Personel;
   confirmDelete: string;
   deleteSub: Subscription;
   submitting: boolean;
@@ -20,13 +21,13 @@ export class DeletePersonComponent implements OnDestroy {
 
   removePerson() {
     this.submitting = true;
-    // DELETE event by ID
+    // DELETE person by ID
     this.deleteSub = this.api.deletePersonel$(this.person._id).subscribe(
       res => {
         this.submitting = false;
         this.error = false;
         console.log(res.message);
-        // If successfully deleted event, redirect to Admin
+        // If successfully deleted personel, redirect to Admin
         this.router.navigate(["/personel"]);
       },
       err => {

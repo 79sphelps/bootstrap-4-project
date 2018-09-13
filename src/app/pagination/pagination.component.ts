@@ -1,12 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-//import { Http, Headers, RequestOptions, Response } from "@angular/http";
-import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
-
 import { PaginationService } from "./pagination.service";
-
 import { ApiService } from "./../core/api.service";
-
 import { EventModel } from "./../core/models/event.model";
 import { Subscription } from "rxjs/Subscription";
 
@@ -51,7 +46,6 @@ export class PaginationComponent implements OnInit, OnDestroy {
     this.allItemsSub = this.api.getEvents$().subscribe(
       res => {
         this.itemList = res;
-        console.log(this.itemList);
         this.loading = false;
         this.setPage(1);
       },

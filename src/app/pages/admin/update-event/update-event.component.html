@@ -1,23 +1,11 @@
 <div class="container">
   <div class="row" style="margin-left: 0px; margin-right: 0px;">
-
-
-
-    <!-- src/app/pages/admin/update-event/update-event.component.html -->
     <h1 class="text-center">{{ pageTitle }}</h1>
 
     <app-loading *ngIf="loading"></app-loading>
 
     <ng-template [ngIf]="utils.isLoaded(loading)">
-
-      <!--
-  <ng-template [ngIf]="event">
-    <app-event-form [event]="event"></app-event-form>
-  </ng-template>
-  -->
-
       <div *ngIf="event" class="card">
-
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs">
             <li class="nav-item">
@@ -36,9 +24,7 @@
           <!-- Delete event -->
           <app-delete-event *ngIf="utils.tabIs(tab, 'delete')" [event]="event"></app-delete-event>
         </div>
-
       </div>
-
 
       <!-- Error loading event -->
       <p *ngIf="error" class="alert alert-danger">

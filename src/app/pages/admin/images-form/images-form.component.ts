@@ -1,4 +1,3 @@
-// src/app/pages/admin/event-form/event-form.component.ts
 import { Component, OnInit, OnDestroy, Input } from "@angular/core";
 import {
   FormGroup,
@@ -11,7 +10,7 @@ import { Subscription } from "rxjs";
 import { ApiService } from "./../../../core/api.service";
 import { Image } from "./../../../core/models/images.model";
 import { ImagesFormService } from "./images-form.service";
-import { SubmittingComponent } from "../../../core/forms/submitting.component";
+// import { SubmittingComponent } from "../../../core/forms/submitting.component";
 
 @Component({
   selector: "app-images-form",
@@ -20,10 +19,13 @@ import { SubmittingComponent } from "../../../core/forms/submitting.component";
   providers: [ImagesFormService]
 })
 export class ImagesFormComponent implements OnInit, OnDestroy {
-  @Input() image: Image;
+  @Input()
+  image: Image;
   isEdit: boolean;
+
   // FormBuilder form
   imageForm: FormGroup;
+
   // Model storing initial form values
   formImage: Image;
 
@@ -57,21 +59,8 @@ export class ImagesFormComponent implements OnInit, OnDestroy {
 
   private _setFormImage() {
     if (!this.isEdit) {
-      // If creating a new event, create new
-      // FormEventModel with default null data
-      // return new FormEventModel(null, null, null, null, null, null, null);
       return new Image(null, null, null, null, null);
     } else {
-      // If editing existing event, create new
-      // FormEventModel from existing data
-      // Transform datetimes:
-      // https://angular.io/api/common/DatePipe
-      // _shortDate: 1/7/2017
-      // 'shortTime': 12:05 PM
-      //const _shortDate = "M/d/yyyy";
-
-      //this.image._id = "";
-
       return new Image(
         this.image._id,
         this.image.caption,
@@ -106,8 +95,6 @@ export class ImagesFormComponent implements OnInit, OnDestroy {
       ],
       editable: [this.formImage.editable, Validators.required]
     });
-    // Set local property to eventForm datesGroup control
-    //this.datesGroup = this.eventForm.get("datesGroup");
 
     // Subscribe to form value changes
     this.formChangeSub = this.imageForm.valueChanges.subscribe(data =>
@@ -115,8 +102,8 @@ export class ImagesFormComponent implements OnInit, OnDestroy {
     );
 
     // If edit: mark fields dirty to trigger immediate
-    // validation in case editing an event that is no
-    // longer valid (for example, an event in the past)
+    // validation in case editing an image that is no
+    // longer valid
     if (this.isEdit) {
       const _markDirty = group => {
         for (const i in group.controls) {
@@ -153,7 +140,7 @@ export class ImagesFormComponent implements OnInit, OnDestroy {
     // Check validation and set errors
     for (const field in this.formErrors) {
       if (this.formErrors.hasOwnProperty(field)) {
-        // Set errors for fields not inside datesGroup
+        // Set errors for fields
         // Clear previous error message (if any)
         this.formErrors[field] = "";
         _setErrMsgs(this.imageForm.get(field), this.formErrors, field);
@@ -162,10 +149,6 @@ export class ImagesFormComponent implements OnInit, OnDestroy {
   }
 
   private _getSubmitObj() {
-    // Convert form startDate/startTime and endDate/endTime
-    // to JS dates and populate a new EventModel for submission
-
-    // this.imageForm ? this.image._id : null,
     return new Image(
       "",
       this.imageForm.get("caption").value,
@@ -199,7 +182,7 @@ export class ImagesFormComponent implements OnInit, OnDestroy {
   private _handleSubmitSuccess(res) {
     this.error = false;
     this.submitting = false;
-    // Redirect to event detail
+    // Redirect to image detail
     this.router.navigate(["/admin/images", res._id]);
   }
 

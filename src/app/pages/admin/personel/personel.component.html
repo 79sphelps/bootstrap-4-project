@@ -1,10 +1,5 @@
-<!-- src/app/pages/admin/admin.component.html -->
-
 <div class="container">
   <div class="row" style="margin-left: 0px; margin-right: 0px;">
-
-
-
     <h1 class="text-center">{{ pageTitle }}</h1>
     <app-loading *ngIf="loading"></app-loading>
 
@@ -19,10 +14,10 @@
         <a class="btn btn-success btn-block" routerLink="/admin/personel/new">+ Add New Personel</a>
       </p>
 
-      <!-- Events -->
+      <!-- Personel -->
       <ng-template [ngIf]="personelList">
         <ng-template [ngIf]="personelList.length">
-          <!-- Search events -->
+          <!-- Search personel -->
           <!--
           <label class="sr-only" for="search">Search</label>
           <div class="search input-group mb-3">
@@ -51,10 +46,9 @@
             <em class="text-danger">{{ query }}</em>, sorry!
           </p>
 
-          <!-- Events listing -->
+          <!-- Personel listing -->
           <section class="list-group" [@expandCollapse]>
             <div *ngFor="let person of fs.search(filteredPersonel)" class=" list-group-item list-group-item-action flex-column align-items-start ">
-
               <div style="display: inline">
                 <div class="d-flex w-100 justify-content-between ">
                   <a [routerLink]="[ '/admin/personel', person._id] ">
@@ -68,14 +62,11 @@
                   <a class="btn btn-danger btn-sm" [routerLink]="['/admin/personel/update', person._id]" [queryParams]="{tab: 'delete'}">Delete</a>
                 </p>
               </div>
-
-
-
             </div>
           </section>
         </ng-template>
 
-        <!-- No events available -->
+        <!-- No personel available -->
         <p *ngIf="!personelList.length " class="alert alert-info ">
           No personel have been created yet.
         </p>
@@ -87,7 +78,5 @@
       </p>
 
     </ng-template>
-
-
   </div>
 </div>
