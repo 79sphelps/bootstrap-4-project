@@ -1,27 +1,27 @@
 // src/app/core/api.service.ts
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
   HttpClient,
   HttpHeaders,
   HttpErrorResponse
-} from "@angular/common/http";
-import { AuthService } from "../auth/auth.service";
-import { Observable } from "rxjs/Observable";
-import { catchError } from "rxjs/operators";
-import "rxjs/add/observable/throw";
-import { ENV } from "./env.config";
-import { EventModel } from "./models/event.model";
-import { Testimonial } from "./models/testimonials.model";
-import { Image } from "./models/images.model";
-import { Homepage } from "./models/homepage.model";
-import { Personel } from "./models/personel.model";
+} from '@angular/common/http';
+import { AuthService } from '../auth/auth.service';
+import { Observable } from 'rxjs/Observable';
+import { catchError } from 'rxjs/operators';
+import 'rxjs/add/observable/throw';
+import { ENV } from './env.config';
+import { EventModel } from './models/event.model';
+import { Testimonial } from './models/testimonials.model';
+import { Image } from './models/images.model';
+import { Homepage } from './models/homepage.model';
+import { Personel } from './models/personel.model';
 
 @Injectable()
 export class ApiService {
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   private get _authHeader(): string {
-    return `Bearer ${localStorage.getItem("access_token")}`;
+    return `Bearer ${localStorage.getItem('access_token')}`;
   }
 
   // ================================================================
@@ -39,7 +39,7 @@ export class ApiService {
   getAdminEvents$(): Observable<EventModel[]> {
     return this.http
       .get(`${ENV.BASE_API}events/admin`, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -48,7 +48,7 @@ export class ApiService {
   getEventById$(id: string): Observable<EventModel> {
     return this.http
       .get(`${ENV.BASE_API}event/${id}`, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -67,8 +67,8 @@ export class ApiService {
   */
 
   private _handleError(err: HttpErrorResponse | any): Observable<any> {
-    const errorMsg = err.message || "Error: Unable to complete request.";
-    if (err.message && err.message.indexOf("No JWT present") > -1) {
+    const errorMsg = err.message || 'Error: Unable to complete request.';
+    if (err.message && err.message.indexOf('No JWT present') > -1) {
       this.auth.login();
     }
     return Observable.throw(errorMsg);
@@ -78,7 +78,7 @@ export class ApiService {
   getUserEvents$(userId: string): Observable<EventModel[]> {
     return this.http
       .get<EventModel[]>(`${ENV.BASE_API}events/${userId}`, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -111,7 +111,7 @@ export class ApiService {
   postEvent$(event: EventModel): Observable<EventModel> {
     return this.http
       .post(`${ENV.BASE_API}event/new`, event, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -120,7 +120,7 @@ export class ApiService {
   editEvent$(id: string, event: EventModel): Observable<EventModel> {
     return this.http
       .put(`${ENV.BASE_API}event/${id}`, event, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -129,7 +129,7 @@ export class ApiService {
   deleteEvent$(id: string): Observable<any> {
     return this.http
       .delete(`${ENV.BASE_API}event/${id}`, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -160,7 +160,7 @@ export class ApiService {
   getImageById$(id: string): Observable<Image> {
     return this.http
       .get(`${ENV.BASE_API}admin/images/${id}`, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -171,7 +171,7 @@ export class ApiService {
 
     return this.http
       .post(`${ENV.BASE_API}admin/images/new`, image, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -180,7 +180,7 @@ export class ApiService {
   editImage$(id: string, image: Image): Observable<Image> {
     return this.http
       .put(`${ENV.BASE_API}admin/images/${id}`, image, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -189,7 +189,7 @@ export class ApiService {
   deleteImage$(id: string): Observable<any> {
     return this.http
       .delete(`${ENV.BASE_API}admin/images/${id}`, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -209,7 +209,7 @@ export class ApiService {
   getPersonelById$(id: string): Observable<Personel> {
     return this.http
       .get(`${ENV.BASE_API}admin/personel/${id}`, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -220,7 +220,7 @@ export class ApiService {
 
     return this.http
       .post(`${ENV.BASE_API}admin/personel/new`, personel, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -229,7 +229,7 @@ export class ApiService {
   editPersonel$(id: string, personel: Personel): Observable<Personel> {
     return this.http
       .put(`${ENV.BASE_API}admin/personel/${id}`, personel, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -238,7 +238,7 @@ export class ApiService {
   deletePersonel$(id: string): Observable<any> {
     return this.http
       .delete(`${ENV.BASE_API}admin/personel/${id}`, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -258,7 +258,7 @@ export class ApiService {
   getHomepageDetailsById$(id: string): Observable<Homepage> {
     return this.http
       .get(`${ENV.BASE_API}homepage/${id}`, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
@@ -267,7 +267,7 @@ export class ApiService {
   editHomepage$(id: string, homepage: Homepage): Observable<Homepage> {
     return this.http
       .put(`${ENV.BASE_API}homepage/${id}`, homepage, {
-        headers: new HttpHeaders().set("Authorization", this._authHeader)
+        headers: new HttpHeaders().set('Authorization', this._authHeader)
       })
       .pipe(catchError(error => this._handleError(error)));
   }
