@@ -58,9 +58,11 @@ h6 {
 body {
   font-family: "Lato", cursive;
 }
+
 .myphoto-section {
   //min-height: 450px;
-  padding: 0.5em 2em;
+  //padding: 0.5em 2em;
+  padding: 0.3em 0.3em;
 }
 .bg-myphoto-dark {
   background-color: #504747;
@@ -75,6 +77,7 @@ body {
   background-color: white;
   color: #504747;
 }
+
 .bg-myphoto-welcome {
   background-image: url("../images/skyline.png");
   background-size: cover;
@@ -85,6 +88,7 @@ body {
   background-size: cover;
   color: white;
 }
+
 .navbar-myphoto {
   background-color: #504747;
   border-color: black;
