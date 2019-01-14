@@ -70,12 +70,15 @@ if (process.env.NODE_ENV !== "dev") {
  |--------------------------------------
  */
 
-require("./server/api")(app, config);
+global.appRoot = path.resolve(__dirname);
+
+require(path.join(appRoot, "/server/api"))(app, config);
+//require("./server/api")(app, config);
 
 // Pass routing to Angular app
 // Don't run in dev
 if (process.env.NODE_ENV !== "dev") {
-  app.get("*", function(req, res) {
+  app.get("/*", function(req, res) {
     res.sendFile(path.join(__dirname, "/dist/index.html"));
     //res.sendFile(path.join("/dist/event-planning-nw/index.html"));
   });
