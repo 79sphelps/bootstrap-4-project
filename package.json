@@ -43,7 +43,6 @@
     "typescript": "~2.5.3",
     "zone.js": "^0.8.19"
   },
-  "postinstall": "ng build --prod",
   "heroku-postbuild": "ng build --prod",
   "engines": {
     "node": "~8.9.4",
