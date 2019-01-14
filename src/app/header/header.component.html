@@ -13,43 +13,81 @@
       <ng-template [ngIf]="!auth.loggingIn">
         <a *ngIf="!auth.loggedIn" (click)="auth.login()">Log In</a>
         <span *ngIf="auth.loggedIn && auth.userProfile">
-          {{ auth.userProfile.name }}
-          <span class="divider">|</span>
+          {{ auth.userProfile.name }} <span class="divider">|</span>
           <a (click)="auth.logout()">Log Out</a>
         </span>
       </ng-template>
     </div>
-
   </div>
 
   <nav id="nav" class="nav" role="navigation">
     <ul class="nav-list">
       <li>
-        <a id="myhomepage" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+        <a
+          id="myhomepage"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Home</a
+        >
       </li>
       <li>
-        <a routerLink="/custom-services" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Services and Events</a>
+        <a
+          routerLink="/custom-services"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Services and Events</a
+        >
       </li>
       <li>
-        <a *ngIf="auth.loggedIn && auth.isAdmin" routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Admin</a>
+        <a
+          *ngIf="auth.loggedIn && auth.isAdmin"
+          routerLink="/admin"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Admin</a
+        >
       </li>
       <li>
-        <a *ngIf="auth.loggedIn && auth.isAdmin" routerLink="/admin/event/new" routerLinkActive="active">Create Event</a>
+        <a
+          *ngIf="auth.loggedIn && auth.isAdmin"
+          routerLink="/admin/event/new"
+          routerLinkActive="active"
+          >Create Event</a
+        >
       </li>
       <li>
-        <a *ngIf="auth.loggedIn && auth.isAdmin" routerLink="/admin/homepage" routerLinkActive="active">Homepage</a>
+        <a
+          *ngIf="auth.loggedIn && auth.isAdmin"
+          routerLink="/admin/homepage"
+          routerLinkActive="active"
+          >Homepage</a
+        >
       </li>
       <li>
-        <a *ngIf="auth.loggedIn && auth.isAdmin" routerLink="/admin/images" routerLinkActive="active">Images</a>
+        <a
+          *ngIf="auth.loggedIn && auth.isAdmin"
+          routerLink="/admin/images"
+          routerLinkActive="active"
+          >Images</a
+        >
+      </li>
+      <li><a routerLink="/personel" routerLinkActive="active">Personel</a></li>
+      <li>
+        <a
+          *ngIf="auth.loggedIn && auth.isAdmin"
+          routerLink="/admin/requests"
+          routerLinkActive="active"
+          >Requests</a
+        >
       </li>
       <li>
-        <a routerLink="/personel" routerLinkActive="active">Personel</a>
-      </li>
-      <li>
-        <a *ngIf="auth.loggedIn && auth.isAdmin" routerLink="/admin/requests" routerLinkActive="active">Requests</a>
-      </li>
-      <li>
-        <a *ngIf="auth.loggedIn && auth.isAdmin" routerLink="/admin/testimonials" routerLinkActive="active">Testimonials</a>
+        <a
+          *ngIf="auth.loggedIn && auth.isAdmin"
+          routerLink="/admin/testimonials"
+          routerLinkActive="active"
+          >Testimonials</a
+        >
       </li>
     </ul>
   </nav>

@@ -1,37 +1,41 @@
 <div class="container-fluid myphoto-section bg-myphoto-dark" id="about">
-    <div class="container">
-        <div class="row" style="margin-left: 0px; margin-right: 0px;">
-            <h3>About</h3>
-            <div class="card bg-myphoto-light">
-                <div class="card-block">
-                    <p [innerHTML]="homepage && homepage.aboutMsg"></p>
+  <div class="container">
+    <div class="row" style="margin-left: 0px; margin-right: 0px;">
+      <h3>About</h3>
+      <div class="card bg-myphoto-light">
+        <div class="card-block">
+          <p [innerHTML]="homepage && homepage.aboutMsg"></p>
 
-                    <blockquote class="blockquote">
-                        <p>{{ homepage && homepage.personHighlightQuote }}</p>
-                        <footer class="blockquote-footer">
-                            {{ homepage && homepage.personHighlight }},
-                            <cite>Event Planning NW</cite>
-                        </footer>
-                    </blockquote>
+          <blockquote class="blockquote">
+            <p>{{ homepage && homepage.personHighlightQuote }}</p>
+            <footer class="blockquote-footer">
+              {{ homepage && homepage.personHighlight }},
+              <cite>Event Planning NW</cite>
+            </footer>
+          </blockquote>
 
-                    <div class="media">
-                        <div class="media-left">
-                            <figure class="figure">
-                                <img [src]="my_image" style="width: 100px; height: auto;" class="figure-img">
-                                <figcaption class="figure-caption">
-                                    {{homepage && homepage.personHighlightThumbnailCaption }}
-                                </figcaption>
-                            </figure>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                {{ homepage && homepage.personHighlight }}
-                            </h4>
-                            {{ homepage && homepage.personHighlightBio }}
-                        </div>
-                    </div>
-                </div>
+          <div class="media">
+            <div class="media-left">
+              <figure class="figure">
+                <img
+                  [src]="my_image"
+                  style="width: 100px; height: auto;"
+                  class="figure-img"
+                />
+                <figcaption class="figure-caption">
+                  {{ homepage && homepage.personHighlightThumbnailCaption }}
+                </figcaption>
+              </figure>
             </div>
+            <div class="media-body">
+              <h4 class="media-heading">
+                {{ homepage && homepage.personHighlight }}
+              </h4>
+              {{ homepage && homepage.personHighlightBio }}
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

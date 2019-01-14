@@ -1,24 +1,27 @@
 <div class="container-fluid myphoto-section bg-myphoto-dark" id="services">
   <div class="container">
-    <div class="row">
-      <h3>Services and Events</h3>
-    </div>
+    <div class="row"><h3>Services and Events</h3></div>
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a href="#services-events" data-toggle="tab" class="nav-link active">Events
+        <a href="#services-events" data-toggle="tab" class="nav-link active"
+          >Events
         </a>
       </li>
       <li class="nav-item">
-        <a href="#services-personal" data-toggle="tab" class="nav-link">Personel</a>
+        <a href="#services-personal" data-toggle="tab" class="nav-link"
+          >Personel</a
+        >
       </li>
       <li class="nav-item">
         <a href="#services-prints" data-toggle="tab" class="nav-link">
-          Events List</a>
+          Events List</a
+        >
       </li>
 
       <li class="nav-item">
         <a href="#services-testimonials" class="nav-link" data-toggle="tab">
-          Testimonials</a>
+          Testimonials</a
+        >
       </li>
     </ul>
 
@@ -26,10 +29,7 @@
       <div role="tabpanel" class="tab-pane active" id="services-events">
         <div class="container">
           <div class="row">
-
-            <div id="pagination">
-              <app-pagination></app-pagination>
-            </div>
+            <div id="pagination"><app-pagination></app-pagination></div>
 
             <!--
             <div id="services-events-content">
@@ -105,28 +105,40 @@
             <div id="services-events-pagination" [ngStyle]="{'width': '250px'}" (click)="_getEventList()">
             </div>
             -->
-
           </div>
         </div>
       </div>
 
       <div role="tabpanel" class="tab-pane" id="services-personal">
         <div class="container">
-          <div class="row" [ngStyle]="{'padding-left': '30px'}">
+          <div class="row" [ngStyle]="{ 'padding-left': '30px' }">
             <div id="services-personel-content">
               <h3>Our Event Planning Team</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at consectetur felis. Sed ornare eu mauris aliquet
-                laoreet. Aliquam erat volutpat. Integer finibus justo eu mauris elementum finibus. Integer accumsan erat
-                nisi, sed eleifend sapien porta malesuada. Sed tempus tortor luctus enim ultricies blandit. Nam facilisis
-                velit eu orci porttitor consectetur. Suspendisse pulvinar sit amet eros non gravida. Quisque sodales risus
-                diam, ut egestas metus mattis sed.</p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+                at consectetur felis. Sed ornare eu mauris aliquet laoreet.
+                Aliquam erat volutpat. Integer finibus justo eu mauris elementum
+                finibus. Integer accumsan erat nisi, sed eleifend sapien porta
+                malesuada. Sed tempus tortor luctus enim ultricies blandit. Nam
+                facilisis velit eu orci porttitor consectetur. Suspendisse
+                pulvinar sit amet eros non gravida. Quisque sodales risus diam,
+                ut egestas metus mattis sed.
+              </p>
             </div>
           </div>
         </div>
       </div>
       <div role="tabpanel" class="tab-pane" id="services-prints">
-        <div class="m-x-auto" [ngStyle]="{'box-shadow': '5px 5px 5px grey', 'width': '50%'}">
-          <h1 class="bg-primary text-xs-center" [ngStyle]="{'padding-bottom': '5px'}">Special Offers</h1>
+        <div
+          class="m-x-auto"
+          [ngStyle]="{ 'box-shadow': '5px 5px 5px grey', width: '50%' }"
+        >
+          <h1
+            class="bg-primary text-xs-center"
+            [ngStyle]="{ 'padding-bottom': '5px' }"
+          >
+            Special Offers
+          </h1>
         </div>
         <div class="container">
           <h1 class="hidden-lg-down">Our Events</h1>
@@ -143,7 +155,6 @@
               </thead>
 
               <tbody>
-
                 <tr *ngFor="let event of eventList">
                   <td>{{ event.location }}</td>
                   <td>{{ event.groupSize }}</td>
@@ -241,7 +252,10 @@
       <div role="tabpanel" class="tab-pane" id="services-testimonials">
         <div class="container">
           <div class="myphoto-testimonial-grid animated fadeIn" data-columns>
-            <div *ngFor="let testimony of testimonialsList" class="myphoto-testimonial-column hvr-grow-shadow hvr-sweep-to-top">
+            <div
+              *ngFor="let testimony of testimonialsList"
+              class="myphoto-testimonial-column hvr-grow-shadow hvr-sweep-to-top"
+            >
               <h6>{{ testimony.name }}</h6>
               <p>{{ testimony.quote }}</p>
             </div>
@@ -287,7 +301,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>
